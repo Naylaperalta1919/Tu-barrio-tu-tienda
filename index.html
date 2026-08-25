@@ -1,10 +1,14 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Tu Barrio, Tu Tienda</title>
+
 
     <style>
 
@@ -12,186 +16,313 @@
             box-sizing: border-box;
         }
 
+
         body {
+
             font-family: Arial, sans-serif;
-            background: #f4f7f4;
+
+            background: #f5f0fa;
+
             margin: 0;
+
             color: #333;
+
         }
+
 
         header {
-            background: #2e7d32;
+
+            background: #6a1b9a;
+
             color: white;
+
             text-align: center;
-            padding: 30px 20px;
+
+            padding: 35px 20px;
+
         }
+
 
         header h1 {
+
             margin: 0;
+
             font-size: 32px;
+
         }
+
 
         header p {
-            margin-top: 8px;
+
+            margin-top: 10px;
+
         }
+
 
         .contenedor {
+
             max-width: 1000px;
+
             margin: 30px auto;
+
             padding: 20px;
+
         }
+
 
         .tarjeta {
+
             background: white;
+
             padding: 25px;
+
             border-radius: 15px;
+
             margin-bottom: 25px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+
+            box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+
         }
+
 
         h2 {
-            color: #2e7d32;
+
+            color: #6a1b9a;
+
         }
+
 
         input {
+
             padding: 12px;
+
             margin: 5px;
+
             border: 1px solid #ccc;
+
             border-radius: 8px;
+
             font-size: 14px;
-            max-width: 100%;
+
         }
+
 
         button {
+
             padding: 10px 14px;
+
             border: none;
+
             border-radius: 8px;
+
             cursor: pointer;
+
             font-weight: bold;
+
             margin: 3px;
+
         }
+
 
         button:hover {
-            opacity: 0.8;
+
+            opacity: 0.85;
+
         }
+
 
         .agregar {
-            background: #2e7d32;
+
+            background: #6a1b9a;
+
             color: white;
+
         }
+
 
         .menos {
-            background: #ffcc80;
+
+            background: #eeeeee;
+
         }
+
 
         .mas {
-            background: #a5d6a7;
+
+            background: #d1c4e9;
+
         }
+
 
         .eliminar {
-            background: #ef9a9a;
+
+            background: #eeeeee;
+
+            color: #b71c1c;
+
         }
+
 
         .tiktok {
-            background: #111;
+
+            background: #6a1b9a;
+
             color: white;
+
         }
+
 
         .tabla-contenedor {
+
             background: white;
+
             padding: 20px;
+
             border-radius: 15px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+
+            box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+
             overflow-x: auto;
+
         }
+
 
         table {
+
             width: 100%;
+
             border-collapse: collapse;
+
         }
+
 
         th, td {
+
             padding: 14px 10px;
+
             border-bottom: 1px solid #ddd;
+
             text-align: center;
+
         }
+
 
         th {
-            background: #e8f5e9;
+
+            background: #ede7f6;
+
+            color: #4a148c;
+
         }
+
 
         .disponible {
-            color: #2e7d32;
+
+            color: #6a1b9a;
+
             font-weight: bold;
+
         }
+
 
         .poco {
-            color: #ef6c00;
+
+            color: #d68910;
+
             font-weight: bold;
+
         }
+
 
         .agotado {
+
             color: #c62828;
+
             font-weight: bold;
+
         }
 
-        .vacio {
-            text-align: center;
-            color: #777;
-            padding: 25px;
-        }
 
         .alerta {
-            background: #fff3cd;
-            padding: 15px;
+
+            padding: 16px;
+
             border-radius: 10px;
+
             margin-bottom: 25px;
+
             display: none;
+
+            font-weight: bold;
+
         }
+
+
+        .alerta-poco {
+
+            background: #fff3cd;
+
+            color: #856404;
+
+        }
+
+
+        .alerta-agotado {
+
+            background: #f8d7da;
+
+            color: #721c24;
+
+        }
+
 
         .redes {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            gap: 8px;
+
+            text-align: center;
+
         }
 
-        .redes input {
-            flex: 1;
-            min-width: 250px;
-        }
-
-        .enlace-tiktok {
-            margin-top: 15px;
-            display: none;
-        }
 
         @media (max-width: 600px) {
 
+
             .contenedor {
+
                 padding: 10px;
+
             }
+
 
             input {
+
                 width: 100%;
+
                 margin: 5px 0;
+
             }
 
+
             .agregar {
+
                 width: 100%;
+
                 margin-top: 8px;
+
             }
 
         }
 
     </style>
+
 </head>
+
 
 <body>
 
+
 <header>
 
-    <h1>📦 Tu Barrio, Tu Tienda</h1>
+    <h1>Tu Barrio, Tu Tienda</h1>
 
     <p>Controla tu inventario de manera fácil</p>
 
@@ -201,51 +332,39 @@
 <div class="contenedor">
 
 
-    <!-- REDES DE LA TIENDA -->
+    <div class="tarjeta redes">
 
-    <div class="tarjeta">
-
-        <h2>📱 Redes de mi tienda</h2>
+        <h2>Conoce nuestra tienda</h2>
 
         <p>
-            Agrega el enlace de TikTok de tu tienda para que tus clientes puedan encontrarte.
+            Encuéntranos en TikTok y conoce más sobre nuestro proyecto.
         </p>
 
-        <div class="redes">
+        <a
+            href="https://www.tiktok.com/@tu.barrio.tu.tien?_r=1&_t=ZS-99ASI7tUr8m"
+            target="_blank"
+        >
 
-            <input
-                type="url"
-                id="tiktok"
-                placeholder="https://www.tiktok.com/@mitienda"
-            >
-
-            <button
-                class="tiktok"
-                onclick="guardarTikTok()"
-            >
-                🎵 Guardar TikTok
+            <button class="tiktok">
+                Ver nuestro TikTok
             </button>
 
-        </div>
-
-        <div id="enlaceTikTok" class="enlace-tiktok">
-
-        </div>
+        </a>
 
     </div>
 
 
-    <!-- AGREGAR PRODUCTO -->
-
     <div class="tarjeta">
 
-        <h2>➕ Agregar producto</h2>
+        <h2>Agregar producto</h2>
+
 
         <input
             type="text"
             id="producto"
             placeholder="Nombre del producto"
         >
+
 
         <input
             type="number"
@@ -254,6 +373,7 @@
             min="0"
         >
 
+
         <input
             type="number"
             id="minimo"
@@ -261,26 +381,29 @@
             min="0"
         >
 
+
         <button
             class="agregar"
             onclick="agregarProducto()"
         >
+
             Agregar producto
+
         </button>
 
     </div>
 
 
-    <!-- ALERTA -->
+    <div
+        id="alerta"
+        class="alerta"
+    ></div>
 
-    <div id="alerta" class="alerta"></div>
-
-
-    <!-- INVENTARIO -->
 
     <div class="tabla-contenedor">
 
-        <h2>📋 Mi inventario</h2>
+        <h2>Mi inventario</h2>
+
 
         <table>
 
@@ -302,9 +425,8 @@
 
             </thead>
 
-            <tbody id="inventario">
 
-            </tbody>
+            <tbody id="inventario"></tbody>
 
         </table>
 
@@ -320,16 +442,9 @@ let productos =
     JSON.parse(localStorage.getItem("productos")) || [];
 
 
-let tiktokGuardado =
-    localStorage.getItem("tiktok") || "";
-
-
 mostrarProductos();
 
-mostrarTikTok();
 
-
-/* GUARDAR PRODUCTOS */
 
 function guardarProductos() {
 
@@ -341,52 +456,75 @@ function guardarProductos() {
 }
 
 
-/* AGREGAR PRODUCTO */
 
 function agregarProducto() {
+
 
     let nombre =
         document.getElementById("producto").value.trim();
 
+
     let cantidad =
-        Number(document.getElementById("cantidad").value);
+        Number(
+            document.getElementById("cantidad").value
+        );
+
 
     let minimo =
-        Number(document.getElementById("minimo").value);
+        Number(
+            document.getElementById("minimo").value
+        );
 
 
     if (
+
         nombre === "" ||
+
         document.getElementById("cantidad").value === "" ||
+
         document.getElementById("minimo").value === "" ||
+
         cantidad < 0 ||
+
         minimo < 0
+
     ) {
 
-        alert("Completa todos los datos correctamente.");
+
+        alert(
+            "Completa todos los datos correctamente."
+        );
+
 
         return;
 
     }
 
 
+
     let productoExistente =
         productos.find(
+
             producto =>
+
                 producto.nombre.toLowerCase() ===
                 nombre.toLowerCase()
+
         );
+
 
 
     if (productoExistente) {
 
+
         productoExistente.cantidad += cantidad;
+
 
         productoExistente.minimo = minimo;
 
-    }
 
-    else {
+    } else {
+
 
         productos.push({
 
@@ -401,9 +539,12 @@ function agregarProducto() {
     }
 
 
+
     guardarProductos();
 
+
     mostrarProductos();
+
 
 
     document.getElementById("producto").value = "";
@@ -415,15 +556,20 @@ function agregarProducto() {
 }
 
 
-/* RESTAR PRODUCTO */
 
 function venderProducto(indice) {
 
-    if (productos[indice].cantidad > 0) {
+
+    if (
+        productos[indice].cantidad > 0
+    ) {
+
 
         productos[indice].cantidad--;
 
+
         guardarProductos();
+
 
         mostrarProductos();
 
@@ -432,34 +578,39 @@ function venderProducto(indice) {
 }
 
 
-/* AUMENTAR PRODUCTO */
 
 function recibirProducto(indice) {
 
+
     productos[indice].cantidad++;
 
+
     guardarProductos();
+
 
     mostrarProductos();
 
 }
 
 
-/* ELIMINAR PRODUCTO */
 
 function eliminarProducto(indice) {
 
-    let confirmar =
+
+    if (
+
         confirm(
             "¿Seguro que quieres eliminar este producto?"
-        );
+        )
 
+    ) {
 
-    if (confirmar) {
 
         productos.splice(indice, 1);
 
+
         guardarProductos();
+
 
         mostrarProductos();
 
@@ -468,25 +619,28 @@ function eliminarProducto(indice) {
 }
 
 
-/* MOSTRAR PRODUCTOS */
 
 function mostrarProductos() {
+
 
     let tabla =
         document.getElementById("inventario");
 
+
     tabla.innerHTML = "";
 
 
+
     if (productos.length === 0) {
+
 
         tabla.innerHTML = `
 
             <tr>
 
-                <td colspan="5" class="vacio">
+                <td colspan="5">
 
-                    Todavía no tienes productos registrados.
+                    No hay productos registrados.
 
                 </td>
 
@@ -494,228 +648,213 @@ function mostrarProductos() {
 
         `;
 
+
         document.getElementById("alerta").style.display =
             "none";
+
 
         return;
 
     }
 
 
-    let productosAgotados = 0;
 
-    let productosPocos = 0;
+    let agotados = 0;
 
-
-    productos.forEach((producto, indice) => {
+    let pocos = 0;
 
 
-        let estado;
 
-        let clase;
+    productos.forEach(
+
+        (producto, indice) => {
 
 
-        if (producto.cantidad === 0) {
+            let estado;
 
-            estado = "🔴 Agotado";
+            let clase;
 
-            clase = "agotado";
 
-            productosAgotados++;
+
+            if (
+                producto.cantidad === 0
+            ) {
+
+
+                estado = "Agotado";
+
+                clase = "agotado";
+
+                agotados++;
+
+
+            }
+
+
+            else if (
+
+                producto.cantidad <= producto.minimo
+
+            ) {
+
+
+                estado = "Poco stock";
+
+                clase = "poco";
+
+                pocos++;
+
+
+            }
+
+
+            else {
+
+
+                estado = "Disponible";
+
+                clase = "disponible";
+
+            }
+
+
+
+            tabla.innerHTML += `
+
+                <tr>
+
+                    <td>
+
+                        <strong>
+                            ${producto.nombre}
+                        </strong>
+
+                    </td>
+
+
+                    <td>
+
+                        ${producto.cantidad}
+
+                    </td>
+
+
+                    <td>
+
+                        ${producto.minimo}
+
+                    </td>
+
+
+                    <td class="${clase}">
+
+                        ${estado}
+
+                    </td>
+
+
+                    <td>
+
+
+                        <button
+
+                            class="menos"
+
+                            onclick="venderProducto(${indice})"
+
+                        >
+
+                            - 1 vendido
+
+                        </button>
+
+
+
+                        <button
+
+                            class="mas"
+
+                            onclick="recibirProducto(${indice})"
+
+                        >
+
+                            + 1 recibido
+
+                        </button>
+
+
+
+                        <button
+
+                            class="eliminar"
+
+                            onclick="eliminarProducto(${indice})"
+
+                        >
+
+                            Eliminar
+
+                        </button>
+
+
+                    </td>
+
+                </tr>
+
+            `;
 
         }
 
-        else if (
-            producto.cantidad <= producto.minimo
-        ) {
+    );
 
-            estado = "🟡 Poco stock";
-
-            clase = "poco";
-
-            productosPocos++;
-
-        }
-
-        else {
-
-            estado = "🟢 Disponible";
-
-            clase = "disponible";
-
-        }
-
-
-        tabla.innerHTML += `
-
-            <tr>
-
-                <td>
-                    <strong>${producto.nombre}</strong>
-                </td>
-
-                <td>
-                    ${producto.cantidad}
-                </td>
-
-                <td>
-                    ${producto.minimo}
-                </td>
-
-                <td class="${clase}">
-                    ${estado}
-                </td>
-
-                <td>
-
-                    <button
-                        class="menos"
-                        onclick="venderProducto(${indice})"
-                    >
-                        − 1 vendido
-                    </button>
-
-
-                    <button
-                        class="mas"
-                        onclick="recibirProducto(${indice})"
-                    >
-                        + 1 recibido
-                    </button>
-
-
-                    <button
-                        class="eliminar"
-                        onclick="eliminarProducto(${indice})"
-                    >
-                        🗑️
-                    </button>
-
-                </td>
-
-            </tr>
-
-        `;
-
-    });
 
 
     let alerta =
         document.getElementById("alerta");
 
 
-    if (
-        productosAgotados > 0 ||
-        productosPocos > 0
-    ) {
 
-        alerta.style.display = "block";
+    if (agotados > 0) {
 
 
-        let mensaje = "⚠️ ";
+        alerta.className =
+            "alerta alerta-agotado";
 
 
-        if (productosAgotados > 0) {
-
-            mensaje +=
-                `Tienes ${productosAgotados} producto(s) agotado(s). `;
-
-        }
+        alerta.style.display =
+            "block";
 
 
-        if (productosPocos > 0) {
+        alerta.innerText =
+            "Hay productos agotados. Es necesario reponerlos.";
 
-            mensaje +=
-                `Tienes ${productosPocos} producto(s) con poco stock.`;
-
-        }
-
-
-        alerta.innerText = mensaje;
 
     }
+
+
+    else if (pocos > 0) {
+
+
+        alerta.className =
+            "alerta alerta-poco";
+
+
+        alerta.style.display =
+            "block";
+
+
+        alerta.innerText =
+            "Hay productos con poco stock.";
+
+
+    }
+
 
     else {
 
-        alerta.style.display = "none";
 
-    }
-
-}
-
-
-/* GUARDAR TIKTOK */
-
-function guardarTikTok() {
-
-    let enlace =
-        document.getElementById("tiktok").value.trim();
-
-
-    if (enlace === "") {
-
-        alert("Escribe el enlace de TikTok de tu tienda.");
-
-        return;
-
-    }
-
-
-    if (!enlace.includes("tiktok.com")) {
-
-        alert("Coloca un enlace válido de TikTok.");
-
-        return;
-
-    }
-
-
-    localStorage.setItem(
-        "tiktok",
-        enlace
-    );
-
-
-    mostrarTikTok();
-
-}
-
-
-/* MOSTRAR TIKTOK */
-
-function mostrarTikTok() {
-
-    let enlace =
-        localStorage.getItem("tiktok");
-
-
-    let contenedor =
-        document.getElementById("enlaceTikTok");
-
-
-    if (enlace) {
-
-        document.getElementById("tiktok").value =
-            enlace;
-
-
-        contenedor.style.display = "block";
-
-
-        contenedor.innerHTML = `
-
-            <a
-                href="${enlace}"
-                target="_blank"
-            >
-
-                <button class="tiktok">
-                    🎵 Ver TikTok de la tienda
-                </button>
-
-            </a>
-
-        `;
+        alerta.style.display =
+            "none";
 
     }
 
@@ -724,5 +863,7 @@ function mostrarTikTok() {
 
 </script>
 
+
 </body>
+
 </html>

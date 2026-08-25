@@ -1962,6 +1962,12 @@
 
 
     <!-- FIREBASE -->
+    <script>
+        window.firebaseReady = new Promise(resolve => {
+            window.resolveFirebaseReady = resolve;
+        });
+    </script>
+
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
         import {
@@ -2000,6 +2006,8 @@
             setDoc,
             getDoc
         };
+
+        window.resolveFirebaseReady();
     </script>
 
     <script>
@@ -2017,7 +2025,8 @@
             null;
 
 
-        function iniciar() {
+        async function iniciar() {
+            await window.firebaseReady;
             const { auth, onAuthStateChanged, db, doc, getDoc } = window.firebaseServices;
 
             onAuthStateChanged(auth, async (firebaseUser) => {
@@ -2061,6 +2070,7 @@
 
 
         async function registrarCuenta() {
+            await window.firebaseReady;
             let nombre = document.getElementById("nombreUsuario").value.trim();
             let correo = document.getElementById("correoUsuario").value.trim();
             let contrasena = document.getElementById("contrasenaUsuario").value;
@@ -2108,6 +2118,7 @@
 
 
         async function entrar() {
+            await window.firebaseReady;
             let correo = document.getElementById("correoUsuario").value.trim();
             let contrasena = document.getElementById("contrasenaUsuario").value;
 
@@ -2208,6 +2219,7 @@
 
 
         async function cerrarSesion() {
+            await window.firebaseReady;
             try {
                 await window.firebaseServices.signOut(window.firebaseServices.auth);
             } catch (error) {
@@ -2218,6 +2230,7 @@
 
 
         async function guardarProductos() {
+            await window.firebaseReady;
             const firebaseUser = window.firebaseServices.auth.currentUser;
 
             if (!firebaseUser || !usuario) {

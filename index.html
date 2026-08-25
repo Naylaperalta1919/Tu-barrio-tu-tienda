@@ -1,14 +1,10 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Tu Barrio, Tu Tienda</title>
-
 
     <style>
 
@@ -16,298 +12,390 @@
             box-sizing: border-box;
         }
 
-
         body {
-
-            font-family: Arial, sans-serif;
-
-            background: #f5f0fa;
-
             margin: 0;
-
-            color: #333;
-
+            font-family: Arial, sans-serif;
+            background: #f6f2fa;
+            color: #302536;
         }
 
+        /* ENCABEZADO */
 
         header {
-
-            background: #6a1b9a;
-
+            background: linear-gradient(135deg, #5e1687, #812bb3);
             color: white;
-
-            text-align: center;
-
-            padding: 35px 20px;
-
+            padding: 25px 35px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.15);
         }
 
-
-        header h1 {
-
+        .logo h1 {
             margin: 0;
-
-            font-size: 32px;
-
+            font-size: 26px;
         }
 
-
-        header p {
-
-            margin-top: 10px;
-
+        .logo p {
+            margin: 5px 0 0;
+            font-size: 14px;
+            opacity: 0.9;
         }
 
+        /* NAVEGACIÓN */
+
+        nav {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        nav button {
+            background: transparent;
+            color: white;
+            border: 1px solid rgba(255,255,255,0.5);
+            padding: 9px 13px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        nav button:hover,
+        nav button.activo {
+            background: white;
+            color: #6a1b9a;
+        }
+
+        /* CONTENEDOR */
 
         .contenedor {
-
-            max-width: 1000px;
-
+            width: 92%;
+            max-width: 1100px;
             margin: 30px auto;
-
-            padding: 20px;
-
         }
 
+        .seccion {
+            display: none;
+        }
+
+        .seccion.activa {
+            display: block;
+        }
+
+        /* TITULOS */
+
+        .titulo {
+            margin-bottom: 25px;
+        }
+
+        .titulo h2 {
+            margin-bottom: 5px;
+            color: #64168d;
+            font-size: 28px;
+        }
+
+        .titulo p {
+            color: #6d6570;
+        }
+
+        /* TARJETAS PRINCIPALES */
+
+        .tarjetas {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+        }
 
         .tarjeta {
-
             background: white;
-
+            border-radius: 16px;
             padding: 25px;
-
-            border-radius: 15px;
-
-            margin-bottom: 25px;
-
-            box-shadow: 0 3px 12px rgba(0,0,0,0.08);
-
+            box-shadow: 0 4px 14px rgba(72, 28, 91, 0.08);
+            border: 1px solid #eee5f3;
         }
 
-
-        h2 {
-
-            color: #6a1b9a;
-
+        .tarjeta h3 {
+            margin-top: 0;
+            color: #64168d;
         }
 
-
-        input {
-
-            padding: 12px;
-
-            margin: 5px;
-
-            border: 1px solid #ccc;
-
-            border-radius: 8px;
-
-            font-size: 14px;
-
+        .tarjeta p {
+            color: #6d6570;
+            line-height: 1.5;
         }
 
-
-        button {
-
-            padding: 10px 14px;
-
-            border: none;
-
-            border-radius: 8px;
-
+        .tarjeta-boton {
             cursor: pointer;
+            transition: 0.2s;
+        }
 
+        .tarjeta-boton:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 20px rgba(72, 28, 91, 0.15);
+        }
+
+        .boton-tarjeta {
+            display: inline-block;
+            margin-top: 10px;
+            background: #6a1b9a;
+            color: white;
+            padding: 10px 16px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
             font-weight: bold;
-
-            margin: 3px;
-
         }
 
+        /* RESUMEN */
 
-        button:hover {
-
-            opacity: 0.85;
-
+        .resumen {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 25px;
         }
 
+        .numero {
+            background: white;
+            padding: 20px;
+            border-radius: 14px;
+            text-align: center;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.07);
+        }
 
-        .agregar {
+        .numero strong {
+            display: block;
+            font-size: 30px;
+            color: #6a1b9a;
+            margin-bottom: 5px;
+        }
 
+        .numero span {
+            color: #777;
+            font-size: 14px;
+        }
+
+        /* FORMULARIOS */
+
+        .formulario {
+            background: white;
+            padding: 25px;
+            border-radius: 16px;
+            box-shadow: 0 4px 14px rgba(72, 28, 91, 0.08);
+        }
+
+        .campo {
+            margin-bottom: 17px;
+        }
+
+        .campo label {
+            display: block;
+            margin-bottom: 7px;
+            font-weight: bold;
+            color: #4d4251;
+        }
+
+        .campo input {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #d5cbd9;
+            border-radius: 8px;
+            font-size: 15px;
+            outline: none;
+        }
+
+        .campo input:focus {
+            border-color: #7b1fa2;
+        }
+
+        .boton-principal {
             background: #6a1b9a;
-
             color: white;
-
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
         }
 
-
-        .menos {
-
-            background: #eeeeee;
-
+        .boton-secundario {
+            background: #ede3f2;
+            color: #5e1687;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
         }
 
-
-        .mas {
-
-            background: #d1c4e9;
-
-        }
-
-
-        .eliminar {
-
-            background: #eeeeee;
-
-            color: #b71c1c;
-
-        }
-
-
-        .tiktok {
-
-            background: #6a1b9a;
-
-            color: white;
-
-        }
-
+        /* TABLA */
 
         .tabla-contenedor {
-
             background: white;
-
+            border-radius: 16px;
             padding: 20px;
-
-            border-radius: 15px;
-
-            box-shadow: 0 3px 12px rgba(0,0,0,0.08);
-
+            box-shadow: 0 4px 14px rgba(72, 28, 91, 0.08);
             overflow-x: auto;
-
         }
 
+        .barra-busqueda {
+            margin-bottom: 20px;
+        }
+
+        .barra-busqueda input {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #d5cbd9;
+            border-radius: 8px;
+            font-size: 15px;
+        }
 
         table {
-
             width: 100%;
-
             border-collapse: collapse;
-
         }
-
-
-        th, td {
-
-            padding: 14px 10px;
-
-            border-bottom: 1px solid #ddd;
-
-            text-align: center;
-
-        }
-
 
         th {
-
-            background: #ede7f6;
-
-            color: #4a148c;
-
+            background: #eee4f4;
+            color: #4d126d;
+            padding: 13px;
+            text-align: center;
         }
 
+        td {
+            padding: 13px;
+            border-bottom: 1px solid #eee;
+            text-align: center;
+        }
 
         .disponible {
-
             color: #6a1b9a;
-
             font-weight: bold;
-
         }
-
 
         .poco {
-
-            color: #d68910;
-
+            color: #9a6900;
             font-weight: bold;
-
         }
-
 
         .agotado {
-
             color: #c62828;
-
             font-weight: bold;
-
         }
 
+        .acciones button {
+            margin: 2px;
+            border: none;
+            border-radius: 7px;
+            padding: 8px 10px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .vender {
+            background: #f0e9f4;
+            color: #5e1687;
+        }
+
+        .recibir {
+            background: #dcd0e5;
+            color: #4a1266;
+        }
+
+        .borrar {
+            background: #f5dddd;
+            color: #a51c1c;
+        }
+
+        /* ALERTAS */
+
+        .alertas {
+            display: grid;
+            gap: 15px;
+        }
 
         .alerta {
-
-            padding: 16px;
-
-            border-radius: 10px;
-
-            margin-bottom: 25px;
-
-            display: none;
-
+            padding: 20px;
+            border-radius: 12px;
             font-weight: bold;
-
         }
 
-
-        .alerta-poco {
-
+        .alerta-amarilla {
             background: #fff3cd;
-
-            color: #856404;
-
+            color: #7b5b00;
+            border-left: 5px solid #e0a800;
         }
 
-
-        .alerta-agotado {
-
+        .alerta-roja {
             background: #f8d7da;
-
-            color: #721c24;
-
+            color: #8a1c24;
+            border-left: 5px solid #c62828;
         }
 
-
-        .redes {
-
+        .sin-alertas {
+            background: white;
+            padding: 30px;
             text-align: center;
-
+            border-radius: 14px;
+            color: #777;
         }
 
+        /* TIKTOK */
 
-        @media (max-width: 600px) {
+        .tiktok-caja {
+            text-align: center;
+            padding: 45px 25px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 14px rgba(72, 28, 91, 0.08);
+        }
 
+        .tiktok-caja h2 {
+            color: #64168d;
+        }
 
-            .contenedor {
+        .boton-tiktok {
+            display: inline-block;
+            margin-top: 15px;
+            background: #111;
+            color: white;
+            padding: 13px 22px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+        }
 
-                padding: 10px;
+        /* MENSAJES */
 
+        .mensaje {
+            display: none;
+            margin-top: 15px;
+            padding: 12px;
+            border-radius: 8px;
+            background: #e8def0;
+            color: #5e1687;
+        }
+
+        /* RESPONSIVE */
+
+        @media (max-width: 750px) {
+
+            header {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
             }
 
-
-            input {
-
-                width: 100%;
-
-                margin: 5px 0;
-
+            .tarjetas {
+                grid-template-columns: 1fr;
             }
 
+            .resumen {
+                grid-template-columns: 1fr;
+            }
 
-            .agregar {
-
-                width: 100%;
-
-                margin-top: 8px;
-
+            nav {
+                justify-content: center;
             }
 
         }
@@ -322,9 +410,47 @@
 
 <header>
 
-    <h1>Tu Barrio, Tu Tienda</h1>
+    <div class="logo">
 
-    <p>Controla tu inventario de manera fácil</p>
+        <h1>Tu Barrio, Tu Tienda</h1>
+
+        <p>Controla tu inventario de manera fácil</p>
+
+    </div>
+
+
+    <nav>
+
+        <button
+            onclick="mostrarSeccion('inicio')"
+            class="activo"
+            id="nav-inicio"
+        >
+            Inicio
+        </button>
+
+        <button
+            onclick="mostrarSeccion('inventario')"
+            id="nav-inventario"
+        >
+            Inventario
+        </button>
+
+        <button
+            onclick="mostrarSeccion('agregar')"
+            id="nav-agregar"
+        >
+            Agregar producto
+        </button>
+
+        <button
+            onclick="mostrarSeccion('alertas')"
+            id="nav-alertas"
+        >
+            Alertas
+        </button>
+
+    </nav>
 
 </header>
 
@@ -332,105 +458,350 @@
 <div class="contenedor">
 
 
-    <div class="tarjeta redes">
+    <!-- INICIO -->
 
-        <h2>Conoce nuestra tienda</h2>
+    <section
+        id="inicio"
+        class="seccion activa"
+    >
 
-        <p>
-            Encuéntranos en TikTok y conoce más sobre nuestro proyecto.
-        </p>
+        <div class="titulo">
 
-        <a
-            href="https://www.tiktok.com/@tu.barrio.tu.tien?_r=1&_t=ZS-99ASI7tUr8m"
-            target="_blank"
-        >
+            <h2>Panel principal</h2>
 
-            <button class="tiktok">
-                Ver nuestro TikTok
+            <p>
+                Administra los productos de tu tienda desde un solo lugar.
+            </p>
+
+        </div>
+
+
+        <div class="resumen">
+
+            <div class="numero">
+
+                <strong id="totalProductos">0</strong>
+
+                <span>Productos registrados</span>
+
+            </div>
+
+
+            <div class="numero">
+
+                <strong id="totalPocos">0</strong>
+
+                <span>Con poco stock</span>
+
+            </div>
+
+
+            <div class="numero">
+
+                <strong id="totalAgotados">0</strong>
+
+                <span>Agotados</span>
+
+            </div>
+
+        </div>
+
+
+        <div class="tarjetas">
+
+
+            <div
+                class="tarjeta tarjeta-boton"
+                onclick="mostrarSeccion('inventario')"
+            >
+
+                <h3>Inventario</h3>
+
+                <p>
+                    Revisa todos los productos de tu tienda y modifica
+                    fácilmente las cantidades.
+                </p>
+
+                <button class="boton-tarjeta">
+                    Ver inventario
+                </button>
+
+            </div>
+
+
+            <div
+                class="tarjeta tarjeta-boton"
+                onclick="mostrarSeccion('agregar')"
+            >
+
+                <h3>Agregar producto</h3>
+
+                <p>
+                    Registra un nuevo producto indicando su cantidad
+                    disponible y el stock mínimo.
+                </p>
+
+                <button class="boton-tarjeta">
+                    Agregar producto
+                </button>
+
+            </div>
+
+
+            <div
+                class="tarjeta tarjeta-boton"
+                onclick="mostrarSeccion('alertas')"
+            >
+
+                <h3>Alertas de stock</h3>
+
+                <p>
+                    Revisa rápidamente qué productos necesitan ser
+                    repuestos.
+                </p>
+
+                <button class="boton-tarjeta">
+                    Ver alertas
+                </button>
+
+            </div>
+
+
+            <div
+                class="tarjeta tarjeta-boton"
+                onclick="mostrarSeccion('tiktok')"
+            >
+
+                <h3>Nuestro TikTok</h3>
+
+                <p>
+                    Conoce nuestro proyecto y encuentra nuestras
+                    publicaciones en TikTok.
+                </p>
+
+                <button class="boton-tarjeta">
+                    Ver TikTok
+                </button>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- INVENTARIO -->
+
+    <section
+        id="inventario"
+        class="seccion"
+    >
+
+        <div class="titulo">
+
+            <h2>Mi inventario</h2>
+
+            <p>
+                Consulta y actualiza las cantidades de tus productos.
+            </p>
+
+        </div>
+
+
+        <div class="tabla-contenedor">
+
+            <div class="barra-busqueda">
+
+                <input
+                    type="text"
+                    id="buscador"
+                    placeholder="Buscar un producto..."
+                    oninput="mostrarInventario()"
+                >
+
+            </div>
+
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>Producto</th>
+
+                        <th>Stock</th>
+
+                        <th>Stock mínimo</th>
+
+                        <th>Estado</th>
+
+                        <th>Acciones</th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="tablaInventario">
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- AGREGAR -->
+
+    <section
+        id="agregar"
+        class="seccion"
+    >
+
+        <div class="titulo">
+
+            <h2>Agregar producto</h2>
+
+            <p>
+                Registra los productos disponibles en tu tienda.
+            </p>
+
+        </div>
+
+
+        <div class="formulario">
+
+
+            <div class="campo">
+
+                <label>
+                    Nombre del producto
+                </label>
+
+                <input
+                    type="text"
+                    id="nombreProducto"
+                    placeholder="Ejemplo: Galletas"
+                >
+
+            </div>
+
+
+            <div class="campo">
+
+                <label>
+                    Cantidad disponible
+                </label>
+
+                <input
+                    type="number"
+                    id="cantidadProducto"
+                    placeholder="Ejemplo: 20"
+                    min="0"
+                >
+
+            </div>
+
+
+            <div class="campo">
+
+                <label>
+                    Stock mínimo
+                </label>
+
+                <input
+                    type="number"
+                    id="minimoProducto"
+                    placeholder="Ejemplo: 5"
+                    min="0"
+                >
+
+            </div>
+
+
+            <button
+                class="boton-principal"
+                onclick="agregarProducto()"
+            >
+                Guardar producto
             </button>
 
-        </a>
 
-    </div>
-
-
-    <div class="tarjeta">
-
-        <h2>Agregar producto</h2>
+            <div
+                id="mensaje"
+                class="mensaje"
+            ></div>
 
 
-        <input
-            type="text"
-            id="producto"
-            placeholder="Nombre del producto"
+        </div>
+
+    </section>
+
+
+
+    <!-- ALERTAS -->
+
+    <section
+        id="alertas"
+        class="seccion"
+    >
+
+        <div class="titulo">
+
+            <h2>Alertas de stock</h2>
+
+            <p>
+                Aquí puedes revisar los productos que necesitan atención.
+            </p>
+
+        </div>
+
+
+        <div
+            id="listaAlertas"
+            class="alertas"
         >
 
+        </div>
 
-        <input
-            type="number"
-            id="cantidad"
-            placeholder="Cantidad"
-            min="0"
-        >
+    </section>
 
 
-        <input
-            type="number"
-            id="minimo"
-            placeholder="Stock mínimo"
-            min="0"
-        >
+
+    <!-- TIKTOK -->
+
+    <section
+        id="tiktok"
+        class="seccion"
+    >
+
+        <div class="tiktok-caja">
+
+            <h2>Tu Barrio, Tu Tienda</h2>
+
+            <p>
+                Conoce nuestro proyecto y síguenos en TikTok.
+            </p>
 
 
-        <button
-            class="agregar"
-            onclick="agregarProducto()"
-        >
+            <a
+                class="boton-tiktok"
+                href="https://www.tiktok.com/@tu.barrio.tu.tien?_r=1&_t=ZS-99ASI7tUr8m"
+                target="_blank"
+            >
+                Ver nuestro TikTok
+            </a>
 
-            Agregar producto
+        </div>
 
-        </button>
+    </section>
 
-    </div>
-
-
-    <div
-        id="alerta"
-        class="alerta"
-    ></div>
-
-
-    <div class="tabla-contenedor">
-
-        <h2>Mi inventario</h2>
-
-
-        <table>
-
-            <thead>
-
-                <tr>
-
-                    <th>Producto</th>
-
-                    <th>Stock</th>
-
-                    <th>Stock mínimo</th>
-
-                    <th>Estado</th>
-
-                    <th>Acciones</th>
-
-                </tr>
-
-            </thead>
-
-
-            <tbody id="inventario"></tbody>
-
-        </table>
-
-    </div>
 
 </div>
 
@@ -438,12 +809,83 @@
 <script>
 
 
+/* =====================================
+   DATOS DEL INVENTARIO
+===================================== */
+
+
 let productos =
-    JSON.parse(localStorage.getItem("productos")) || [];
+    JSON.parse(
+        localStorage.getItem("productos")
+    ) || [];
 
 
-mostrarProductos();
+/* =====================================
+   NAVEGACIÓN
+===================================== */
 
+
+function mostrarSeccion(nombre) {
+
+
+    let secciones =
+        document.querySelectorAll(".seccion");
+
+
+    secciones.forEach(
+        seccion => seccion.classList.remove("activa")
+    );
+
+
+    document
+        .getElementById(nombre)
+        .classList.add("activa");
+
+
+    let botones =
+        document.querySelectorAll("nav button");
+
+
+    botones.forEach(
+        boton => boton.classList.remove("activo")
+    );
+
+
+    let botonActivo =
+        document.getElementById(
+            "nav-" + nombre
+        );
+
+
+    if (botonActivo) {
+
+        botonActivo.classList.add("activo");
+
+    }
+
+
+    if (nombre === "inventario") {
+
+        mostrarInventario();
+
+    }
+
+
+    if (nombre === "alertas") {
+
+        mostrarAlertas();
+
+    }
+
+
+    actualizarResumen();
+
+}
+
+
+/* =====================================
+   GUARDAR DATOS
+===================================== */
 
 
 function guardarProductos() {
@@ -456,23 +898,34 @@ function guardarProductos() {
 }
 
 
+/* =====================================
+   AGREGAR PRODUCTO
+===================================== */
+
 
 function agregarProducto() {
 
 
     let nombre =
-        document.getElementById("producto").value.trim();
+        document
+            .getElementById("nombreProducto")
+            .value
+            .trim();
 
 
     let cantidad =
         Number(
-            document.getElementById("cantidad").value
+            document
+                .getElementById("cantidadProducto")
+                .value
         );
 
 
     let minimo =
         Number(
-            document.getElementById("minimo").value
+            document
+                .getElementById("minimoProducto")
+                .value
         );
 
 
@@ -480,9 +933,13 @@ function agregarProducto() {
 
         nombre === "" ||
 
-        document.getElementById("cantidad").value === "" ||
+        document
+            .getElementById("cantidadProducto")
+            .value === "" ||
 
-        document.getElementById("minimo").value === "" ||
+        document
+            .getElementById("minimoProducto")
+            .value === "" ||
 
         cantidad < 0 ||
 
@@ -490,41 +947,32 @@ function agregarProducto() {
 
     ) {
 
-
         alert(
-            "Completa todos los datos correctamente."
+            "Completa todos los campos correctamente."
         );
-
 
         return;
 
     }
 
 
-
-    let productoExistente =
+    let existente =
         productos.find(
-
             producto =>
-
                 producto.nombre.toLowerCase() ===
                 nombre.toLowerCase()
-
         );
 
 
+    if (existente) {
 
-    if (productoExistente) {
+        existente.cantidad += cantidad;
 
+        existente.minimo = minimo;
 
-        productoExistente.cantidad += cantidad;
+    }
 
-
-        productoExistente.minimo = minimo;
-
-
-    } else {
-
+    else {
 
         productos.push({
 
@@ -539,22 +987,45 @@ function agregarProducto() {
     }
 
 
-
     guardarProductos();
 
+    actualizarResumen();
 
-    mostrarProductos();
+    mostrarInventario();
+
+    mostrarAlertas();
 
 
+    document
+        .getElementById("nombreProducto")
+        .value = "";
 
-    document.getElementById("producto").value = "";
 
-    document.getElementById("cantidad").value = "";
+    document
+        .getElementById("cantidadProducto")
+        .value = "";
 
-    document.getElementById("minimo").value = "";
+
+    document
+        .getElementById("minimoProducto")
+        .value = "";
+
+
+    let mensaje =
+        document.getElementById("mensaje");
+
+
+    mensaje.style.display = "block";
+
+    mensaje.innerText =
+        "Producto guardado correctamente.";
 
 }
 
+
+/* =====================================
+   VENDER
+===================================== */
 
 
 function venderProducto(indice) {
@@ -564,19 +1035,24 @@ function venderProducto(indice) {
         productos[indice].cantidad > 0
     ) {
 
-
         productos[indice].cantidad--;
-
 
         guardarProductos();
 
+        mostrarInventario();
 
-        mostrarProductos();
+        mostrarAlertas();
+
+        actualizarResumen();
 
     }
 
 }
 
+
+/* =====================================
+   RECIBIR
+===================================== */
 
 
 function recibirProducto(indice) {
@@ -584,55 +1060,131 @@ function recibirProducto(indice) {
 
     productos[indice].cantidad++;
 
-
     guardarProductos();
 
+    mostrarInventario();
 
-    mostrarProductos();
+    mostrarAlertas();
+
+    actualizarResumen();
 
 }
 
+
+/* =====================================
+   ELIMINAR
+===================================== */
 
 
 function eliminarProducto(indice) {
 
 
-    if (
-
+    let confirmar =
         confirm(
-            "¿Seguro que quieres eliminar este producto?"
-        )
-
-    ) {
+            "¿Quieres eliminar este producto?"
+        );
 
 
-        productos.splice(indice, 1);
+    if (!confirmar) {
 
-
-        guardarProductos();
-
-
-        mostrarProductos();
+        return;
 
     }
+
+
+    productos.splice(
+        indice,
+        1
+    );
+
+
+    guardarProductos();
+
+    mostrarInventario();
+
+    mostrarAlertas();
+
+    actualizarResumen();
 
 }
 
 
+/* =====================================
+   ESTADO
+===================================== */
 
-function mostrarProductos() {
+
+function obtenerEstado(producto) {
+
+
+    if (
+        producto.cantidad === 0
+    ) {
+
+        return {
+            texto: "Agotado",
+            clase: "agotado"
+        };
+
+    }
+
+
+    if (
+        producto.cantidad <= producto.minimo
+    ) {
+
+        return {
+            texto: "Poco stock",
+            clase: "poco"
+        };
+
+    }
+
+
+    return {
+        texto: "Disponible",
+        clase: "disponible"
+    };
+
+}
+
+
+/* =====================================
+   INVENTARIO
+===================================== */
+
+
+function mostrarInventario() {
 
 
     let tabla =
-        document.getElementById("inventario");
+        document.getElementById(
+            "tablaInventario"
+        );
+
+
+    let busqueda =
+        document
+            .getElementById("buscador")
+            .value
+            .toLowerCase();
+
+
+    let filtrados =
+        productos.filter(
+            producto =>
+                producto.nombre
+                    .toLowerCase()
+                    .includes(busqueda)
+        );
 
 
     tabla.innerHTML = "";
 
 
-
-    if (productos.length === 0) {
-
+    if (
+        filtrados.length === 0
+    ) {
 
         tabla.innerHTML = `
 
@@ -640,7 +1192,7 @@ function mostrarProductos() {
 
                 <td colspan="5">
 
-                    No hay productos registrados.
+                    No se encontraron productos.
 
                 </td>
 
@@ -648,75 +1200,21 @@ function mostrarProductos() {
 
         `;
 
-
-        document.getElementById("alerta").style.display =
-            "none";
-
-
         return;
 
     }
 
 
-
-    let agotados = 0;
-
-    let pocos = 0;
+    filtrados.forEach(
+        producto => {
 
 
-
-    productos.forEach(
-
-        (producto, indice) => {
+            let indice =
+                productos.indexOf(producto);
 
 
-            let estado;
-
-            let clase;
-
-
-
-            if (
-                producto.cantidad === 0
-            ) {
-
-
-                estado = "Agotado";
-
-                clase = "agotado";
-
-                agotados++;
-
-
-            }
-
-
-            else if (
-
-                producto.cantidad <= producto.minimo
-
-            ) {
-
-
-                estado = "Poco stock";
-
-                clase = "poco";
-
-                pocos++;
-
-
-            }
-
-
-            else {
-
-
-                estado = "Disponible";
-
-                clase = "disponible";
-
-            }
-
+            let estado =
+                obtenerEstado(producto);
 
 
             tabla.innerHTML += `
@@ -733,32 +1231,28 @@ function mostrarProductos() {
 
 
                     <td>
-
                         ${producto.cantidad}
-
                     </td>
 
 
                     <td>
-
                         ${producto.minimo}
+                    </td>
+
+
+                    <td class="${estado.clase}">
+
+                        ${estado.texto}
 
                     </td>
 
 
-                    <td class="${clase}">
-
-                        ${estado}
-
-                    </td>
-
-
-                    <td>
+                    <td class="acciones">
 
 
                         <button
 
-                            class="menos"
+                            class="vender"
 
                             onclick="venderProducto(${indice})"
 
@@ -769,10 +1263,9 @@ function mostrarProductos() {
                         </button>
 
 
-
                         <button
 
-                            class="mas"
+                            class="recibir"
 
                             onclick="recibirProducto(${indice})"
 
@@ -783,10 +1276,9 @@ function mostrarProductos() {
                         </button>
 
 
-
                         <button
 
-                            class="eliminar"
+                            class="borrar"
 
                             onclick="eliminarProducto(${indice})"
 
@@ -804,62 +1296,168 @@ function mostrarProductos() {
             `;
 
         }
-
     );
-
-
-
-    let alerta =
-        document.getElementById("alerta");
-
-
-
-    if (agotados > 0) {
-
-
-        alerta.className =
-            "alerta alerta-agotado";
-
-
-        alerta.style.display =
-            "block";
-
-
-        alerta.innerText =
-            "Hay productos agotados. Es necesario reponerlos.";
-
-
-    }
-
-
-    else if (pocos > 0) {
-
-
-        alerta.className =
-            "alerta alerta-poco";
-
-
-        alerta.style.display =
-            "block";
-
-
-        alerta.innerText =
-            "Hay productos con poco stock.";
-
-
-    }
-
-
-    else {
-
-
-        alerta.style.display =
-            "none";
-
-    }
 
 }
 
+
+/* =====================================
+   ALERTAS
+===================================== */
+
+
+function mostrarAlertas() {
+
+
+    let contenedor =
+        document.getElementById(
+            "listaAlertas"
+        );
+
+
+    contenedor.innerHTML = "";
+
+
+    let agotados =
+        productos.filter(
+            producto =>
+                producto.cantidad === 0
+        );
+
+
+    let pocos =
+        productos.filter(
+            producto =>
+                producto.cantidad > 0 &&
+                producto.cantidad <= producto.minimo
+        );
+
+
+    if (
+        agotados.length === 0 &&
+        pocos.length === 0
+    ) {
+
+        contenedor.innerHTML = `
+
+            <div class="sin-alertas">
+
+                No hay productos que necesiten atención.
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    agotados.forEach(
+        producto => {
+
+            contenedor.innerHTML += `
+
+                <div class="alerta alerta-roja">
+
+                    Producto agotado:
+                    <strong>
+                        ${producto.nombre}
+                    </strong>
+
+                    <br>
+
+                    Es necesario reponer este producto.
+
+                </div>
+
+            `;
+
+        }
+    );
+
+
+    pocos.forEach(
+        producto => {
+
+            contenedor.innerHTML += `
+
+                <div class="alerta alerta-amarilla">
+
+                    Poco stock:
+                    <strong>
+                        ${producto.nombre}
+                    </strong>
+
+                    <br>
+
+                    Quedan
+                    ${producto.cantidad}
+                    unidades.
+
+                </div>
+
+            `;
+
+        }
+    );
+
+}
+
+
+/* =====================================
+   RESUMEN
+===================================== */
+
+
+function actualizarResumen() {
+
+
+    let pocos =
+        productos.filter(
+            producto =>
+                producto.cantidad > 0 &&
+                producto.cantidad <= producto.minimo
+        ).length;
+
+
+    let agotados =
+        productos.filter(
+            producto =>
+                producto.cantidad === 0
+        ).length;
+
+
+    document
+        .getElementById("totalProductos")
+        .innerText =
+        productos.length;
+
+
+    document
+        .getElementById("totalPocos")
+        .innerText =
+        pocos;
+
+
+    document
+        .getElementById("totalAgotados")
+        .innerText =
+        agotados;
+
+}
+
+
+/* =====================================
+   INICIAR
+===================================== */
+
+
+actualizarResumen();
+
+mostrarInventario();
+
+mostrarAlertas();
 
 </script>
 

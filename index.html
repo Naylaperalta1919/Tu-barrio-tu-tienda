@@ -1,580 +1,1117 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>Tu Barrio, Tu Tienda</title>
 
     <style>
+
         * {
             box-sizing: border-box;
         }
 
+
         :root {
+
             --morado: #6a1b9a;
+
             --morado-oscuro: #4d126d;
+
             --morado-claro: #f0e6f5;
+
             --fondo: #f6f2fa;
+
             --blanco: #ffffff;
+
             --texto: #302536;
+
             --texto-suave: #6d6570;
+
             --borde: #e7ddeb;
+
             --rojo: #c62828;
+
             --amarillo: #a66f00;
+
             --verde: #24804a;
+
         }
+
 
         body.oscuro {
+
             --fondo: #18121d;
+
             --blanco: #251d2a;
+
             --texto: #f3edf5;
+
             --texto-suave: #c7bdcb;
+
             --borde: #403547;
+
             --morado-claro: #382342;
+
         }
 
+
         body {
+
             margin: 0;
+
             font-family: Arial, sans-serif;
+
             background: var(--fondo);
+
             color: var(--texto);
+
             transition: 0.3s;
+
         }
+
 
         /* LOGIN */
 
         .pantalla-login {
+
             min-height: 100vh;
+
             display: flex;
+
             justify-content: center;
+
             align-items: center;
+
             padding: 20px;
-            background: linear-gradient(135deg, #5e1687, #9c3cc7);
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #5e1687,
+                    #9c3cc7
+                );
+
         }
+
 
         .login-caja {
+
             width: 100%;
+
             max-width: 450px;
+
             background: white;
+
             padding: 35px;
+
             border-radius: 20px;
-            box-shadow: 0 10px 35px rgba(0,0,0,0.25);
+
+            box-shadow:
+                0 10px 35px
+                rgba(0,0,0,0.25);
+
         }
+
 
         .login-caja h1 {
+
             color: var(--morado);
+
             margin-top: 0;
+
             text-align: center;
+
         }
 
+
         .login-caja p {
+
             text-align: center;
+
             color: #777;
+
             margin-bottom: 30px;
+
         }
+
 
         /* HEADER */
 
         header {
-            background: linear-gradient(135deg, #5e1687, #812bb3);
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #5e1687,
+                    #812bb3
+                );
+
             color: white;
+
             padding: 20px 35px;
+
             display: flex;
+
             align-items: center;
+
             justify-content: space-between;
+
             gap: 20px;
+
             flex-wrap: wrap;
-            box-shadow: 0 3px 12px rgba(0,0,0,0.15);
+
+            box-shadow:
+                0 3px 12px
+                rgba(0,0,0,0.15);
+
         }
+
 
         .logo h1 {
+
             margin: 0;
+
             font-size: 26px;
+
         }
+
 
         .logo p {
+
             margin: 5px 0 0;
+
             font-size: 14px;
+
             opacity: 0.9;
+
         }
 
+
         nav {
+
             display: flex;
+
             gap: 8px;
+
             flex-wrap: wrap;
+
         }
+
 
         nav button,
         .boton-modo {
+
             background: transparent;
+
             color: white;
-            border: 1px solid rgba(255,255,255,0.5);
+
+            border:
+                1px solid
+                rgba(255,255,255,0.5);
+
             padding: 9px 13px;
+
             border-radius: 8px;
+
             cursor: pointer;
+
             font-weight: bold;
+
         }
+
 
         nav button:hover,
         nav button.activo,
         .boton-modo:hover {
+
             background: white;
+
             color: var(--morado);
+
         }
+
 
         /* CONTENEDOR */
 
         .contenedor {
+
             width: 92%;
+
             max-width: 1150px;
+
             margin: 30px auto;
+
         }
+
 
         .seccion {
+
             display: none;
+
         }
+
 
         .seccion.activa {
+
             display: block;
+
         }
+
 
         .titulo {
+
             margin-bottom: 25px;
+
         }
+
 
         .titulo h2 {
+
             margin-bottom: 5px;
+
             color: var(--morado);
+
             font-size: 28px;
+
         }
 
+
         .titulo p {
+
             color: var(--texto-suave);
+
         }
+
 
         /* TARJETAS */
 
         .tarjetas {
+
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
             gap: 18px;
+
         }
+
 
         .tarjeta {
+
             background: var(--blanco);
+
             border-radius: 16px;
+
             padding: 25px;
-            box-shadow: 0 4px 14px rgba(72, 28, 91, 0.08);
-            border: 1px solid var(--borde);
+
+            box-shadow:
+                0 4px 14px
+                rgba(72,28,91,0.08);
+
+            border:
+                1px solid
+                var(--borde);
+
         }
+
 
         .tarjeta-boton {
+
             cursor: pointer;
+
             transition: 0.2s;
+
         }
+
 
         .tarjeta-boton:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 20px rgba(72, 28, 91, 0.18);
+
+            transform:
+                translateY(-4px);
+
+            box-shadow:
+                0 8px 20px
+                rgba(72,28,91,0.18);
+
         }
+
 
         .tarjeta h3 {
+
             margin-top: 0;
+
             color: var(--morado);
+
         }
+
 
         .tarjeta p {
+
             color: var(--texto-suave);
+
             line-height: 1.5;
+
         }
 
+
         .boton-tarjeta {
+
             margin-top: 10px;
+
             background: var(--morado);
+
             color: white;
+
             padding: 10px 16px;
+
             border-radius: 8px;
+
             border: none;
+
             cursor: pointer;
+
             font-weight: bold;
+
         }
+
 
         /* RESUMEN */
 
         .resumen {
+
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
             gap: 15px;
+
             margin-bottom: 25px;
+
         }
+
 
         .numero {
+
             background: var(--blanco);
+
             padding: 20px;
+
             border-radius: 14px;
+
             text-align: center;
-            box-shadow: 0 3px 12px rgba(0,0,0,0.07);
-            border: 1px solid var(--borde);
+
+            box-shadow:
+                0 3px 12px
+                rgba(0,0,0,0.07);
+
+            border:
+                1px solid
+                var(--borde);
+
         }
+
 
         .numero strong {
+
             display: block;
+
             font-size: 28px;
+
             color: var(--morado);
+
             margin-bottom: 5px;
+
         }
 
+
         .numero span {
+
             color: var(--texto-suave);
+
             font-size: 14px;
+
         }
+
 
         /* FORMULARIOS */
 
         .formulario {
+
             background: var(--blanco);
+
             padding: 25px;
+
             border-radius: 16px;
-            box-shadow: 0 4px 14px rgba(72, 28, 91, 0.08);
-            border: 1px solid var(--borde);
+
+            box-shadow:
+                0 4px 14px
+                rgba(72,28,91,0.08);
+
+            border:
+                1px solid
+                var(--borde);
+
         }
+
 
         .campo {
+
             margin-bottom: 17px;
+
         }
 
+
         .campo label {
+
             display: block;
+
             margin-bottom: 7px;
+
             font-weight: bold;
+
         }
+
 
         .campo input,
         .campo select {
+
             width: 100%;
+
             padding: 13px;
-            border: 1px solid var(--borde);
+
+            border:
+                1px solid
+                var(--borde);
+
             border-radius: 8px;
+
             font-size: 15px;
+
             outline: none;
+
             background: var(--blanco);
+
             color: var(--texto);
+
         }
+
 
         .campo input:focus,
         .campo select:focus {
-            border-color: var(--morado);
+
+            border-color:
+                var(--morado);
+
         }
+
 
         .boton-principal {
-            background: var(--morado);
+
+            background:
+                var(--morado);
+
             color: white;
+
             border: none;
+
             padding: 12px 20px;
+
             border-radius: 8px;
+
             cursor: pointer;
+
             font-weight: bold;
+
         }
+
 
         .boton-secundario {
-            background: var(--morado-claro);
-            color: var(--morado);
+
+            background:
+                var(--morado-claro);
+
+            color:
+                var(--morado);
+
             border: none;
+
             padding: 10px 15px;
+
             border-radius: 8px;
+
             cursor: pointer;
+
             font-weight: bold;
+
         }
 
+
         .boton-peligro {
+
             background: #f5dddd;
+
             color: var(--rojo);
+
             border: none;
+
             padding: 10px 15px;
+
             border-radius: 8px;
+
             cursor: pointer;
+
             font-weight: bold;
+
         }
+
 
         /* INVENTARIO */
 
         .tabla-contenedor {
+
             background: var(--blanco);
+
             border-radius: 16px;
+
             padding: 20px;
+
             overflow-x: auto;
-            border: 1px solid var(--borde);
+
+            border:
+                1px solid
+                var(--borde);
+
         }
+
 
         .filtros {
+
             display: grid;
-            grid-template-columns: 2fr 1fr auto;
+
+            grid-template-columns:
+                2fr 1fr auto;
+
             gap: 12px;
+
             margin-bottom: 20px;
+
         }
+
+
+        .filtros input,
+        .filtros select {
+
+            padding: 12px;
+
+            border:
+                1px solid
+                var(--borde);
+
+            border-radius: 8px;
+
+            background:
+                var(--blanco);
+
+            color:
+                var(--texto);
+
+        }
+
 
         table {
+
             width: 100%;
+
             border-collapse: collapse;
+
         }
+
 
         th {
-            background: var(--morado-claro);
-            color: var(--morado-oscuro);
+
+            background:
+                var(--morado-claro);
+
+            color:
+                var(--morado-oscuro);
+
             padding: 13px;
+
             text-align: center;
+
         }
+
 
         td {
+
             padding: 13px;
-            border-bottom: 1px solid var(--borde);
+
+            border-bottom:
+                1px solid
+                var(--borde);
+
             text-align: center;
+
         }
+
 
         .disponible {
+
             color: var(--verde);
+
             font-weight: bold;
+
         }
+
 
         .poco {
+
             color: var(--amarillo);
+
             font-weight: bold;
+
         }
+
 
         .agotado {
+
             color: var(--rojo);
+
             font-weight: bold;
+
         }
+
 
         .acciones {
+
             min-width: 220px;
+
         }
+
 
         .acciones button {
+
             margin: 2px;
+
             border: none;
+
             border-radius: 7px;
+
             padding: 8px 10px;
+
             cursor: pointer;
+
             font-weight: bold;
+
         }
+
 
         .vender {
+
             background: #f0e9f4;
-            color: var(--morado);
+
+            color:
+                var(--morado);
+
         }
+
 
         .recibir {
+
             background: #dcecdf;
-            color: var(--verde);
+
+            color:
+                var(--verde);
+
         }
+
 
         .editar {
+
             background: #e3e8f7;
+
             color: #3155a3;
+
         }
 
+
         .borrar {
+
             background: #f5dddd;
-            color: var(--rojo);
+
+            color:
+                var(--rojo);
+
         }
+
 
         /* ALERTAS */
 
         .alertas {
+
             display: grid;
+
             gap: 15px;
+
         }
+
 
         .alerta {
+
             padding: 20px;
+
             border-radius: 12px;
+
             font-weight: bold;
+
         }
+
 
         .alerta-amarilla {
+
             background: #fff3cd;
+
             color: #7b5b00;
-            border-left: 5px solid #e0a800;
+
+            border-left:
+                5px solid
+                #e0a800;
+
         }
+
 
         .alerta-roja {
+
             background: #f8d7da;
+
             color: #8a1c24;
-            border-left: 5px solid #c62828;
+
+            border-left:
+                5px solid
+                #c62828;
+
         }
 
+
         .sin-alertas {
-            background: var(--blanco);
+
+            background:
+                var(--blanco);
+
             padding: 30px;
+
             text-align: center;
+
             border-radius: 14px;
-            color: var(--texto-suave);
+
+            color:
+                var(--texto-suave);
+
         }
+
 
         /* GRAFICO */
 
         .grafico-caja {
-            background: var(--blanco);
+
+            background:
+                var(--blanco);
+
             padding: 25px;
+
             border-radius: 16px;
-            border: 1px solid var(--borde);
+
+            border:
+                1px solid
+                var(--borde);
+
             margin-top: 25px;
+
         }
+
 
         .barra {
+
             margin-bottom: 18px;
+
         }
+
 
         .barra-titulo {
+
             display: flex;
-            justify-content: space-between;
+
+            justify-content:
+                space-between;
+
             margin-bottom: 7px;
+
             font-weight: bold;
+
         }
+
 
         .barra-fondo {
+
             height: 24px;
-            background: var(--morado-claro);
+
+            background:
+                var(--morado-claro);
+
             border-radius: 20px;
+
             overflow: hidden;
+
         }
 
+
         .barra-relleno {
+
             height: 100%;
-            background: var(--morado);
+
+            background:
+                var(--morado);
+
             border-radius: 20px;
-            transition: width 0.5s;
+
+            transition:
+                width 0.5s;
+
         }
+
 
         /* PERFIL */
 
         .perfil-caja {
-            background: var(--blanco);
+
+            background:
+                var(--blanco);
+
             padding: 30px;
+
             border-radius: 16px;
-            border: 1px solid var(--borde);
+
+            border:
+                1px solid
+                var(--borde);
+
             max-width: 650px;
+
         }
 
+
         .dato-perfil {
+
             padding: 15px;
-            background: var(--morado-claro);
+
+            background:
+                var(--morado-claro);
+
             border-radius: 10px;
+
             margin-bottom: 12px;
+
         }
+
 
         /* MENSAJE */
 
         .mensaje {
+
             display: none;
+
             margin-top: 15px;
+
             padding: 12px;
+
             border-radius: 8px;
-            background: var(--morado-claro);
-            color: var(--morado);
+
+            background:
+                var(--morado-claro);
+
+            color:
+                var(--morado);
+
         }
+
 
         /* MODAL */
 
         .modal {
+
             display: none;
+
             position: fixed;
+
             inset: 0;
-            background: rgba(0,0,0,0.55);
+
+            background:
+                rgba(0,0,0,0.55);
+
             align-items: center;
+
             justify-content: center;
+
             padding: 20px;
+
             z-index: 10;
+
         }
+
 
         .modal.activo {
+
             display: flex;
+
         }
+
 
         .modal-contenido {
+
             width: 100%;
+
             max-width: 500px;
-            background: var(--blanco);
+
+            background:
+                var(--blanco);
+
             padding: 25px;
+
             border-radius: 18px;
+
             max-height: 90vh;
+
             overflow-y: auto;
+
         }
 
+
         .modal-botones {
+
             display: flex;
+
             gap: 10px;
+
             margin-top: 20px;
+
         }
+
 
         @media (max-width: 800px) {
 
             header {
+
                 flex-direction: column;
+
                 text-align: center;
+
             }
 
+
             nav {
+
                 justify-content: center;
+
             }
+
 
             .tarjetas,
             .resumen {
+
                 grid-template-columns: 1fr;
+
             }
 
+
             .filtros {
+
                 grid-template-columns: 1fr;
+
             }
+
         }
+
     </style>
+
 </head>
+
 
 <body>
 
+
     <!-- LOGIN -->
 
-    <div id="pantallaLogin" class="pantalla-login">
+    <div
+        id="pantallaLogin"
+        class="pantalla-login"
+    >
 
         <div class="login-caja">
 
-            <h1>🏪 Tu Barrio, Tu Tienda</h1>
+            <h1>
+                Tu Barrio, Tu Tienda
+            </h1>
 
             <p>
-                Guarda y administra fácilmente el inventario de tu tienda
+                Guarda y administra fácilmente
+                el inventario de tu tienda
             </p>
 
+
             <div class="campo">
-                <label>Nombre</label>
+
+                <label>
+                    Nombre
+                </label>
 
                 <input
                     type="text"
                     id="nombreUsuario"
                     placeholder="Ejemplo: Nayla"
                 >
+
             </div>
 
+
             <div class="campo">
-                <label>Correo electrónico</label>
+
+                <label>
+                    Correo electrónico
+                </label>
 
                 <input
                     type="email"
                     id="correoUsuario"
                     placeholder="ejemplo@gmail.com"
                 >
+
             </div>
 
+
             <div class="campo">
-                <label>Nombre de tu tienda</label>
+
+                <label>
+                    Nombre de tu tienda
+                </label>
 
                 <input
                     type="text"
                     id="nombreTienda"
-                    placeholder="Ejemplo: Bodega Nayla"
+                    placeholder="Ejemplo: Mi tienda"
                 >
+
             </div>
+
 
             <button
                 class="boton-principal"
@@ -584,8 +1121,15 @@
                 Entrar a mi inventario
             </button>
 
-            <p style="font-size: 12px; margin-top: 20px;">
-                Tus datos se guardan en este navegador.
+
+            <p
+                style="
+                    font-size: 12px;
+                    margin-top: 20px;
+                "
+            >
+                Tus datos se guardan
+                en este navegador.
             </p>
 
         </div>
@@ -593,9 +1137,12 @@
     </div>
 
 
-    <!-- APP -->
+    <!-- APLICACION -->
 
-    <div id="app" style="display: none;">
+    <div
+        id="app"
+        style="display: none;"
+    >
 
         <header>
 
@@ -606,10 +1153,12 @@
                 </h1>
 
                 <p>
-                    Controla tu inventario de manera fácil
+                    Controla tu inventario
+                    de manera fácil
                 </p>
 
             </div>
+
 
             <nav>
 
@@ -621,6 +1170,7 @@
                     Inicio
                 </button>
 
+
                 <button
                     onclick="mostrarSeccion('inventario')"
                     id="nav-inventario"
@@ -628,12 +1178,14 @@
                     Inventario
                 </button>
 
+
                 <button
                     onclick="mostrarSeccion('agregar')"
                     id="nav-agregar"
                 >
-                    Agregar
+                    Agregar producto
                 </button>
+
 
                 <button
                     onclick="mostrarSeccion('alertas')"
@@ -642,6 +1194,7 @@
                     Alertas
                 </button>
 
+
                 <button
                     onclick="mostrarSeccion('perfil')"
                     id="nav-perfil"
@@ -649,11 +1202,12 @@
                     Mi perfil
                 </button>
 
+
                 <button
                     class="boton-modo"
                     onclick="cambiarModo()"
                 >
-                    🌙
+                    Modo oscuro
                 </button>
 
             </nav>
@@ -674,11 +1228,13 @@
                 <div class="titulo">
 
                     <h2>
-                        Hola, <span id="saludoUsuario"></span> 👋
+                        Hola,
+                        <span id="saludoUsuario"></span>
                     </h2>
 
                     <p>
-                        Aquí tienes un resumen de tu inventario.
+                        Aquí tienes un resumen
+                        de tu inventario.
                     </p>
 
                 </div>
@@ -688,35 +1244,60 @@
 
                     <div class="numero">
 
-                        <strong id="totalProductos">0</strong>
+                        <strong
+                            id="totalProductos"
+                        >
+                            0
+                        </strong>
 
-                        <span>Productos registrados</span>
-
-                    </div>
-
-                    <div class="numero">
-
-                        <strong id="totalPocos">0</strong>
-
-                        <span>Con poco stock</span>
+                        <span>
+                            Productos registrados
+                        </span>
 
                     </div>
 
+
                     <div class="numero">
 
-                        <strong id="totalAgotados">0</strong>
+                        <strong
+                            id="totalPocos"
+                        >
+                            0
+                        </strong>
 
-                        <span>Agotados</span>
+                        <span>
+                            Con poco stock
+                        </span>
 
                     </div>
 
+
                     <div class="numero">
 
-                        <strong id="valorInventario">
+                        <strong
+                            id="totalAgotados"
+                        >
+                            0
+                        </strong>
+
+                        <span>
+                            Agotados
+                        </span>
+
+                    </div>
+
+
+                    <div class="numero">
+
+                        <strong
+                            id="valorInventario"
+                        >
                             S/ 0.00
                         </strong>
 
-                        <span>Valor del inventario</span>
+                        <span>
+                            Valor del inventario
+                        </span>
 
                     </div>
 
@@ -725,18 +1306,28 @@
 
                 <div class="tarjetas">
 
+
                     <div
                         class="tarjeta tarjeta-boton"
-                        onclick="mostrarSeccion('inventario')"
+                        onclick="
+                            mostrarSeccion(
+                                'inventario'
+                            )
+                        "
                     >
 
-                        <h3>📦 Inventario</h3>
+                        <h3>
+                            Inventario
+                        </h3>
 
                         <p>
-                            Revisa, busca y administra todos tus productos.
+                            Revisa, busca y administra
+                            todos tus productos.
                         </p>
 
-                        <button class="boton-tarjeta">
+                        <button
+                            class="boton-tarjeta"
+                        >
                             Ver inventario
                         </button>
 
@@ -745,16 +1336,25 @@
 
                     <div
                         class="tarjeta tarjeta-boton"
-                        onclick="mostrarSeccion('agregar')"
+                        onclick="
+                            mostrarSeccion(
+                                'agregar'
+                            )
+                        "
                     >
 
-                        <h3>➕ Agregar producto</h3>
+                        <h3>
+                            Agregar producto
+                        </h3>
 
                         <p>
-                            Registra nuevos productos con precio y categoría.
+                            Registra nuevos productos
+                            con precio y categoría.
                         </p>
 
-                        <button class="boton-tarjeta">
+                        <button
+                            class="boton-tarjeta"
+                        >
                             Agregar producto
                         </button>
 
@@ -763,16 +1363,25 @@
 
                     <div
                         class="tarjeta tarjeta-boton"
-                        onclick="mostrarSeccion('alertas')"
+                        onclick="
+                            mostrarSeccion(
+                                'alertas'
+                            )
+                        "
                     >
 
-                        <h3>⚠️ Alertas</h3>
+                        <h3>
+                            Alertas
+                        </h3>
 
                         <p>
-                            Revisa qué productos necesitan ser repuestos.
+                            Revisa qué productos
+                            necesitan ser repuestos.
                         </p>
 
-                        <button class="boton-tarjeta">
+                        <button
+                            class="boton-tarjeta"
+                        >
                             Ver alertas
                         </button>
 
@@ -784,13 +1393,18 @@
                         onclick="exportarCSV()"
                     >
 
-                        <h3>📥 Exportar</h3>
+                        <h3>
+                            Exportar
+                        </h3>
 
                         <p>
-                            Descarga una copia de tu inventario.
+                            Descarga una copia
+                            de tu inventario.
                         </p>
 
-                        <button class="boton-tarjeta">
+                        <button
+                            class="boton-tarjeta"
+                        >
                             Descargar CSV
                         </button>
 
@@ -802,20 +1416,30 @@
                 <div class="grafico-caja">
 
                     <h3>
-                        📊 Estado general del inventario
+                        Estado general del inventario
                     </h3>
+
 
                     <div class="barra">
 
                         <div class="barra-titulo">
 
-                            <span>Disponible</span>
+                            <span>
+                                Disponible
+                            </span>
 
-                            <span id="graficoDisponible">0</span>
+                            <span
+                                id="graficoDisponible"
+                            >
+                                0
+                            </span>
 
                         </div>
 
-                        <div class="barra-fondo">
+
+                        <div
+                            class="barra-fondo"
+                        >
 
                             <div
                                 id="barraDisponible"
@@ -832,13 +1456,22 @@
 
                         <div class="barra-titulo">
 
-                            <span>Poco stock</span>
+                            <span>
+                                Poco stock
+                            </span>
 
-                            <span id="graficoPoco">0</span>
+                            <span
+                                id="graficoPoco"
+                            >
+                                0
+                            </span>
 
                         </div>
 
-                        <div class="barra-fondo">
+
+                        <div
+                            class="barra-fondo"
+                        >
 
                             <div
                                 id="barraPoco"
@@ -855,13 +1488,22 @@
 
                         <div class="barra-titulo">
 
-                            <span>Agotado</span>
+                            <span>
+                                Agotado
+                            </span>
 
-                            <span id="graficoAgotado">0</span>
+                            <span
+                                id="graficoAgotado"
+                            >
+                                0
+                            </span>
 
                         </div>
 
-                        <div class="barra-fondo">
+
+                        <div
+                            class="barra-fondo"
+                        >
 
                             <div
                                 id="barraAgotado"
@@ -887,29 +1529,39 @@
 
                 <div class="titulo">
 
-                    <h2>Mi inventario</h2>
+                    <h2>
+                        Mi inventario
+                    </h2>
 
                     <p>
-                        Consulta y administra todos tus productos.
+                        Consulta y administra
+                        todos tus productos.
                     </p>
 
                 </div>
 
 
-                <div class="tabla-contenedor">
+                <div
+                    class="tabla-contenedor"
+                >
 
                     <div class="filtros">
 
                         <input
                             type="text"
                             id="buscador"
-                            placeholder="🔍 Buscar producto..."
-                            oninput="mostrarInventario()"
+                            placeholder="Buscar producto..."
+                            oninput="
+                                mostrarInventario()
+                            "
                         >
+
 
                         <select
                             id="filtroCategoria"
-                            onchange="mostrarInventario()"
+                            onchange="
+                                mostrarInventario()
+                            "
                         >
 
                             <option value="">
@@ -938,11 +1590,14 @@
 
                         </select>
 
+
                         <button
                             class="boton-secundario"
-                            onclick="exportarCSV()"
+                            onclick="
+                                exportarCSV()
+                            "
                         >
-                            📥 Exportar
+                            Exportar
                         </button>
 
                     </div>
@@ -954,25 +1609,42 @@
 
                             <tr>
 
-                                <th>Producto</th>
+                                <th>
+                                    Producto
+                                </th>
 
-                                <th>Categoría</th>
+                                <th>
+                                    Categoría
+                                </th>
 
-                                <th>Stock</th>
+                                <th>
+                                    Stock
+                                </th>
 
-                                <th>Mínimo</th>
+                                <th>
+                                    Stock mínimo
+                                </th>
 
-                                <th>Precio</th>
+                                <th>
+                                    Precio
+                                </th>
 
-                                <th>Estado</th>
+                                <th>
+                                    Estado
+                                </th>
 
-                                <th>Acciones</th>
+                                <th>
+                                    Acciones
+                                </th>
 
                             </tr>
 
                         </thead>
 
-                        <tbody id="tablaInventario"></tbody>
+
+                        <tbody
+                            id="tablaInventario"
+                        ></tbody>
 
                     </table>
 
@@ -990,18 +1662,23 @@
 
                 <div class="titulo">
 
-                    <h2 id="tituloFormulario">
+                    <h2
+                        id="tituloFormulario"
+                    >
                         Agregar producto
                     </h2>
 
                     <p>
-                        Registra los productos disponibles en tu tienda.
+                        Registra los productos
+                        disponibles en tu tienda.
                     </p>
 
                 </div>
 
 
-                <div class="formulario">
+                <div
+                    class="formulario"
+                >
 
                     <input
                         type="hidden"
@@ -1018,7 +1695,9 @@
                         <input
                             type="text"
                             id="nombreProducto"
-                            placeholder="Ejemplo: Galletas"
+                            placeholder="
+                                Ejemplo: Galletas
+                            "
                         >
 
                     </div>
@@ -1030,7 +1709,9 @@
                             Categoría
                         </label>
 
-                        <select id="categoriaProducto">
+                        <select
+                            id="categoriaProducto"
+                        >
 
                             <option value="">
                                 Selecciona una categoría
@@ -1112,14 +1793,19 @@
 
                     <button
                         class="boton-principal"
-                        onclick="guardarProducto()"
+                        onclick="
+                            guardarProducto()
+                        "
                     >
                         Guardar producto
                     </button>
 
+
                     <button
                         class="boton-secundario"
-                        onclick="limpiarFormulario()"
+                        onclick="
+                            limpiarFormulario()
+                        "
                     >
                         Limpiar
                     </button>
@@ -1144,10 +1830,14 @@
 
                 <div class="titulo">
 
-                    <h2>⚠️ Alertas de stock</h2>
+                    <h2>
+                        Alertas de stock
+                    </h2>
 
                     <p>
-                        Aquí puedes revisar los productos que necesitan atención.
+                        Aquí puedes revisar
+                        los productos que
+                        necesitan atención.
                     </p>
 
                 </div>
@@ -1170,7 +1860,9 @@
 
                 <div class="titulo">
 
-                    <h2>Mi perfil</h2>
+                    <h2>
+                        Mi perfil
+                    </h2>
 
                     <p>
                         Información de tu tienda.
@@ -1179,38 +1871,60 @@
                 </div>
 
 
-                <div class="perfil-caja">
+                <div
+                    class="perfil-caja"
+                >
 
-                    <div class="dato-perfil">
+                    <div
+                        class="dato-perfil"
+                    >
 
-                        <strong>👤 Usuario:</strong>
+                        <strong>
+                            Usuario:
+                        </strong>
 
-                        <span id="perfilNombre"></span>
+                        <span
+                            id="perfilNombre"
+                        ></span>
 
                     </div>
 
 
-                    <div class="dato-perfil">
+                    <div
+                        class="dato-perfil"
+                    >
 
-                        <strong>📧 Correo:</strong>
+                        <strong>
+                            Correo:
+                        </strong>
 
-                        <span id="perfilCorreo"></span>
+                        <span
+                            id="perfilCorreo"
+                        ></span>
 
                     </div>
 
 
-                    <div class="dato-perfil">
+                    <div
+                        class="dato-perfil"
+                    >
 
-                        <strong>🏪 Tienda:</strong>
+                        <strong>
+                            Tienda:
+                        </strong>
 
-                        <span id="perfilTienda"></span>
+                        <span
+                            id="perfilTienda"
+                        ></span>
 
                     </div>
 
 
                     <button
                         class="boton-peligro"
-                        onclick="cerrarSesion()"
+                        onclick="
+                            cerrarSesion()
+                        "
                     >
                         Cerrar sesión
                     </button>
@@ -1218,7 +1932,6 @@
                 </div>
 
             </section>
-
 
         </div>
 
@@ -1232,17 +1945,27 @@
         class="modal"
     >
 
-        <div class="modal-contenido">
+        <div
+            class="modal-contenido"
+        >
 
-            <h2 id="tituloModal">
+            <h2
+                id="tituloModal"
+            >
                 Actualizar producto
             </h2>
 
-            <p id="textoModal"></p>
+
+            <p
+                id="textoModal"
+            ></p>
+
 
             <div class="campo">
 
-                <label>Cantidad</label>
+                <label>
+                    Cantidad
+                </label>
 
                 <input
                     type="number"
@@ -1253,18 +1976,26 @@
 
             </div>
 
-            <div class="modal-botones">
+
+            <div
+                class="modal-botones"
+            >
 
                 <button
                     class="boton-principal"
-                    onclick="confirmarOperacion()"
+                    onclick="
+                        confirmarOperacion()
+                    "
                 >
                     Confirmar
                 </button>
 
+
                 <button
                     class="boton-secundario"
-                    onclick="cerrarModal()"
+                    onclick="
+                        cerrarModal()
+                    "
                 >
                     Cancelar
                 </button>
@@ -1278,28 +2009,29 @@
 
     <script>
 
-        /* ============================
-           DATOS
-        ============================ */
-
         let productos =
             JSON.parse(
-                localStorage.getItem("productos")
+                localStorage.getItem(
+                    "productos"
+                )
             ) || [];
+
 
         let usuario =
             JSON.parse(
-                localStorage.getItem("usuario")
+                localStorage.getItem(
+                    "usuario"
+                )
             ) || null;
 
-        let operacionActual = null;
 
-        let indiceActual = null;
+        let operacionActual =
+            null;
 
 
-        /* ============================
-           INICIAR
-        ============================ */
+        let indiceActual =
+            null;
+
 
         function iniciar() {
 
@@ -1312,27 +2044,31 @@
         }
 
 
-        /* ============================
-           ENTRAR
-        ============================ */
-
         function entrar() {
 
             let nombre =
                 document
-                    .getElementById("nombreUsuario")
+                    .getElementById(
+                        "nombreUsuario"
+                    )
                     .value
                     .trim();
+
 
             let correo =
                 document
-                    .getElementById("correoUsuario")
+                    .getElementById(
+                        "correoUsuario"
+                    )
                     .value
                     .trim();
 
+
             let tienda =
                 document
-                    .getElementById("nombreTienda")
+                    .getElementById(
+                        "nombreTienda"
+                    )
                     .value
                     .trim();
 
@@ -1374,47 +2110,60 @@
         }
 
 
-        /* ============================
-           MOSTRAR APP
-        ============================ */
-
         function mostrarApp() {
 
             document
-                .getElementById("pantallaLogin")
-                .style.display = "none";
+                .getElementById(
+                    "pantallaLogin"
+                )
+                .style.display =
+                "none";
+
 
             document
-                .getElementById("app")
-                .style.display = "block";
+                .getElementById(
+                    "app"
+                )
+                .style.display =
+                "block";
 
 
             document
-                .getElementById("tituloTienda")
+                .getElementById(
+                    "tituloTienda"
+                )
                 .innerText =
                 usuario.tienda;
 
 
             document
-                .getElementById("saludoUsuario")
+                .getElementById(
+                    "saludoUsuario"
+                )
                 .innerText =
                 usuario.nombre;
 
 
             document
-                .getElementById("perfilNombre")
+                .getElementById(
+                    "perfilNombre"
+                )
                 .innerText =
                 usuario.nombre;
 
 
             document
-                .getElementById("perfilCorreo")
+                .getElementById(
+                    "perfilCorreo"
+                )
                 .innerText =
                 usuario.correo;
 
 
             document
-                .getElementById("perfilTienda")
+                .getElementById(
+                    "perfilTienda"
+                )
                 .innerText =
                 usuario.tienda;
 
@@ -1424,26 +2173,25 @@
         }
 
 
-        /* ============================
-           CERRAR SESIÓN
-        ============================ */
-
         function cerrarSesion() {
 
             document
-                .getElementById("app")
-                .style.display = "none";
+                .getElementById(
+                    "app"
+                )
+                .style.display =
+                "none";
+
 
             document
-                .getElementById("pantallaLogin")
-                .style.display = "flex";
+                .getElementById(
+                    "pantallaLogin"
+                )
+                .style.display =
+                "flex";
 
         }
 
-
-        /* ============================
-           GUARDAR
-        ============================ */
 
         function guardarProductos() {
 
@@ -1455,30 +2203,36 @@
         }
 
 
-        /* ============================
-           NAVEGACIÓN
-        ============================ */
-
         function mostrarSeccion(nombre) {
 
             document
-                .querySelectorAll(".seccion")
+                .querySelectorAll(
+                    ".seccion"
+                )
                 .forEach(
                     seccion =>
-                        seccion.classList.remove("activa")
+                        seccion.classList.remove(
+                            "activa"
+                        )
                 );
 
 
             document
                 .getElementById(nombre)
-                .classList.add("activa");
+                .classList.add(
+                    "activa"
+                );
 
 
             document
-                .querySelectorAll("nav button")
+                .querySelectorAll(
+                    "nav button"
+                )
                 .forEach(
                     boton =>
-                        boton.classList.remove("activo")
+                        boton.classList.remove(
+                            "activo"
+                        )
                 );
 
 
@@ -1490,19 +2244,28 @@
 
             if (botonActivo) {
 
-                botonActivo.classList.add("activo");
+                botonActivo
+                    .classList.add(
+                        "activo"
+                    );
 
             }
 
 
-            if (nombre === "inventario") {
+            if (
+                nombre ===
+                "inventario"
+            ) {
 
                 mostrarInventario();
 
             }
 
 
-            if (nombre === "alertas") {
+            if (
+                nombre ===
+                "alertas"
+            ) {
 
                 mostrarAlertas();
 
@@ -1514,65 +2277,93 @@
         }
 
 
-        /* ============================
-           GUARDAR PRODUCTO
-        ============================ */
-
         function guardarProducto() {
 
             let nombre =
                 document
-                    .getElementById("nombreProducto")
+                    .getElementById(
+                        "nombreProducto"
+                    )
                     .value
                     .trim();
 
+
             let categoria =
                 document
-                    .getElementById("categoriaProducto")
+                    .getElementById(
+                        "categoriaProducto"
+                    )
                     .value;
+
 
             let cantidad =
                 Number(
                     document
-                        .getElementById("cantidadProducto")
+                        .getElementById(
+                            "cantidadProducto"
+                        )
                         .value
                 );
+
 
             let minimo =
                 Number(
                     document
-                        .getElementById("minimoProducto")
+                        .getElementById(
+                            "minimoProducto"
+                        )
                         .value
                 );
+
 
             let precio =
                 Number(
                     document
-                        .getElementById("precioProducto")
+                        .getElementById(
+                            "precioProducto"
+                        )
                         .value
                 );
 
+
             let indiceEditar =
                 document
-                    .getElementById("indiceEditar")
+                    .getElementById(
+                        "indiceEditar"
+                    )
                     .value;
 
 
             if (
+
                 nombre === "" ||
+
                 categoria === "" ||
+
                 document
-                    .getElementById("cantidadProducto")
+                    .getElementById(
+                        "cantidadProducto"
+                    )
                     .value === "" ||
+
                 document
-                    .getElementById("minimoProducto")
+                    .getElementById(
+                        "minimoProducto"
+                    )
                     .value === "" ||
+
                 document
-                    .getElementById("precioProducto")
+                    .getElementById(
+                        "precioProducto"
+                    )
                     .value === "" ||
+
                 cantidad < 0 ||
+
                 minimo < 0 ||
+
                 precio < 0
+
             ) {
 
                 alert(
@@ -1599,10 +2390,13 @@
             };
 
 
-            if (indiceEditar !== "") {
+            if (
+                indiceEditar !== ""
+            ) {
 
                 productos[indiceEditar] =
                     producto;
+
 
                 mostrarMensaje(
                     "Producto actualizado correctamente."
@@ -1612,7 +2406,10 @@
 
             else {
 
-                productos.push(producto);
+                productos.push(
+                    producto
+                );
+
 
                 mostrarMensaje(
                     "Producto guardado correctamente."
@@ -1630,63 +2427,81 @@
         }
 
 
-        /* ============================
-           LIMPIAR FORMULARIO
-        ============================ */
-
         function limpiarFormulario() {
 
             document
-                .getElementById("nombreProducto")
+                .getElementById(
+                    "nombreProducto"
+                )
                 .value = "";
 
-            document
-                .getElementById("categoriaProducto")
-                .value = "";
 
             document
-                .getElementById("cantidadProducto")
+                .getElementById(
+                    "categoriaProducto"
+                )
                 .value = "";
 
-            document
-                .getElementById("minimoProducto")
-                .value = "";
 
             document
-                .getElementById("precioProducto")
+                .getElementById(
+                    "cantidadProducto"
+                )
                 .value = "";
 
-            document
-                .getElementById("indiceEditar")
-                .value = "";
 
             document
-                .getElementById("tituloFormulario")
+                .getElementById(
+                    "minimoProducto"
+                )
+                .value = "";
+
+
+            document
+                .getElementById(
+                    "precioProducto"
+                )
+                .value = "";
+
+
+            document
+                .getElementById(
+                    "indiceEditar"
+                )
+                .value = "";
+
+
+            document
+                .getElementById(
+                    "tituloFormulario"
+                )
                 .innerText =
                 "Agregar producto";
 
         }
 
 
-        /* ============================
-           MENSAJE
-        ============================ */
-
         function mostrarMensaje(texto) {
 
             let mensaje =
-                document
-                    .getElementById("mensaje");
+                document.getElementById(
+                    "mensaje"
+                );
 
-            mensaje.innerText = texto;
 
-            mensaje.style.display = "block";
+            mensaje.innerText =
+                texto;
+
+
+            mensaje.style.display =
+                "block";
 
 
             setTimeout(
                 function() {
 
-                    mensaje.style.display = "none";
+                    mensaje.style.display =
+                        "none";
 
                 },
                 3000
@@ -1695,10 +2510,6 @@
         }
 
 
-        /* ============================
-           EDITAR
-        ============================ */
-
         function editarProducto(indice) {
 
             let producto =
@@ -1706,49 +2517,67 @@
 
 
             document
-                .getElementById("nombreProducto")
+                .getElementById(
+                    "nombreProducto"
+                )
                 .value =
                 producto.nombre;
 
+
             document
-                .getElementById("categoriaProducto")
+                .getElementById(
+                    "categoriaProducto"
+                )
                 .value =
                 producto.categoria;
 
+
             document
-                .getElementById("cantidadProducto")
+                .getElementById(
+                    "cantidadProducto"
+                )
                 .value =
                 producto.cantidad;
 
+
             document
-                .getElementById("minimoProducto")
+                .getElementById(
+                    "minimoProducto"
+                )
                 .value =
                 producto.minimo;
 
+
             document
-                .getElementById("precioProducto")
+                .getElementById(
+                    "precioProducto"
+                )
                 .value =
                 producto.precio;
 
+
             document
-                .getElementById("indiceEditar")
+                .getElementById(
+                    "indiceEditar"
+                )
                 .value =
                 indice;
 
+
             document
-                .getElementById("tituloFormulario")
+                .getElementById(
+                    "tituloFormulario"
+                )
                 .innerText =
                 "Editar producto";
 
 
-            mostrarSeccion("agregar");
+            mostrarSeccion(
+                "agregar"
+            );
 
         }
 
-
-        /* ============================
-           ESTADO
-        ============================ */
 
         function obtenerEstado(producto) {
 
@@ -1758,9 +2587,11 @@
 
                 return {
 
-                    texto: "Agotado",
+                    texto:
+                        "Agotado",
 
-                    clase: "agotado"
+                    clase:
+                        "agotado"
 
                 };
 
@@ -1768,14 +2599,17 @@
 
 
             if (
-                producto.cantidad <= producto.minimo
+                producto.cantidad <=
+                producto.minimo
             ) {
 
                 return {
 
-                    texto: "Poco stock",
+                    texto:
+                        "Poco stock",
 
-                    clase: "poco"
+                    clase:
+                        "poco"
 
                 };
 
@@ -1784,18 +2618,16 @@
 
             return {
 
-                texto: "Disponible",
+                texto:
+                    "Disponible",
 
-                clase: "disponible"
+                clase:
+                    "disponible"
 
             };
 
         }
 
-
-        /* ============================
-           MOSTRAR INVENTARIO
-        ============================ */
 
         function mostrarInventario() {
 
@@ -1807,14 +2639,18 @@
 
             let busqueda =
                 document
-                    .getElementById("buscador")
+                    .getElementById(
+                        "buscador"
+                    )
                     .value
                     .toLowerCase();
 
 
             let categoria =
                 document
-                    .getElementById("filtroCategoria")
+                    .getElementById(
+                        "filtroCategoria"
+                    )
                     .value;
 
 
@@ -1824,21 +2660,32 @@
 
                         producto.nombre
                             .toLowerCase()
-                            .includes(busqueda)
+                            .includes(
+                                busqueda
+                            )
 
                         &&
 
                         (
-                            categoria === "" ||
-                            producto.categoria === categoria
+
+                            categoria === ""
+
+                            ||
+
+                            producto.categoria ===
+                            categoria
+
                         )
                 );
 
 
-            tabla.innerHTML = "";
+            tabla.innerHTML =
+                "";
 
 
-            if (filtrados.length === 0) {
+            if (
+                filtrados.length === 0
+            ) {
 
                 tabla.innerHTML = `
 
@@ -1863,10 +2710,15 @@
                 producto => {
 
                     let indice =
-                        productos.indexOf(producto);
+                        productos.indexOf(
+                            producto
+                        );
+
 
                     let estado =
-                        obtenerEstado(producto);
+                        obtenerEstado(
+                            producto
+                        );
 
 
                     tabla.innerHTML += `
@@ -1874,71 +2726,112 @@
                         <tr>
 
                             <td>
+
                                 <strong>
+
                                     ${producto.nombre}
+
                                 </strong>
+
                             </td>
 
+
                             <td>
+
                                 ${producto.categoria}
+
                             </td>
 
+
                             <td>
+
                                 ${producto.cantidad}
+
                             </td>
 
+
                             <td>
+
                                 ${producto.minimo}
+
                             </td>
 
+
                             <td>
+
                                 S/ ${producto.precio.toFixed(2)}
+
                             </td>
+
 
                             <td
                                 class="${estado.clase}"
                             >
+
                                 ${estado.texto}
+
                             </td>
 
-                            <td class="acciones">
+
+                            <td
+                                class="acciones"
+                            >
 
                                 <button
                                     class="vender"
-                                    onclick="abrirOperacion(
-                                        'vender',
-                                        ${indice}
-                                    )"
+                                    onclick="
+                                        abrirOperacion(
+                                            'vender',
+                                            ${indice}
+                                        )
+                                    "
                                 >
-                                    ➖ Vender
+
+                                    Vender
+
                                 </button>
+
 
                                 <button
                                     class="recibir"
-                                    onclick="abrirOperacion(
-                                        'recibir',
-                                        ${indice}
-                                    )"
+                                    onclick="
+                                        abrirOperacion(
+                                            'recibir',
+                                            ${indice}
+                                        )
+                                    "
                                 >
-                                    ➕ Recibir
+
+                                    Recibir
+
                                 </button>
+
 
                                 <button
                                     class="editar"
-                                    onclick="editarProducto(
-                                        ${indice}
-                                    )"
+                                    onclick="
+                                        editarProducto(
+                                            ${indice}
+                                        )
+                                    "
                                 >
-                                    ✏️ Editar
+
+                                    Editar
+
                                 </button>
+
 
                                 <button
                                     class="borrar"
-                                    onclick="eliminarProducto(
-                                        ${indice}
-                                    )"
+                                    onclick="
+                                        eliminarProducto(
+                                            ${indice}
+                                        )
+                                    "
                                 >
-                                    🗑 Eliminar
+
+                                    Eliminar
+
                                 </button>
 
                             </td>
@@ -1953,34 +2846,41 @@
         }
 
 
-        /* ============================
-           OPERACIONES
-        ============================ */
-
         function abrirOperacion(
             tipo,
             indice
         ) {
 
-            operacionActual = tipo;
+            operacionActual =
+                tipo;
 
-            indiceActual = indice;
+            indiceActual =
+                indice;
 
 
             document
-                .getElementById("cantidadOperacion")
+                .getElementById(
+                    "cantidadOperacion"
+                )
                 .value = 1;
 
 
-            if (tipo === "vender") {
+            if (
+                tipo === "vender"
+            ) {
 
                 document
-                    .getElementById("tituloModal")
+                    .getElementById(
+                        "tituloModal"
+                    )
                     .innerText =
                     "Registrar venta";
 
+
                 document
-                    .getElementById("textoModal")
+                    .getElementById(
+                        "textoModal"
+                    )
                     .innerText =
                     "¿Cuántas unidades se vendieron?";
 
@@ -1989,12 +2889,17 @@
             else {
 
                 document
-                    .getElementById("tituloModal")
+                    .getElementById(
+                        "tituloModal"
+                    )
                     .innerText =
                     "Registrar ingreso";
 
+
                 document
-                    .getElementById("textoModal")
+                    .getElementById(
+                        "textoModal"
+                    )
                     .innerText =
                     "¿Cuántas unidades llegaron?";
 
@@ -2002,8 +2907,12 @@
 
 
             document
-                .getElementById("modalCantidad")
-                .classList.add("activo");
+                .getElementById(
+                    "modalCantidad"
+                )
+                .classList.add(
+                    "activo"
+                );
 
         }
 
@@ -2013,14 +2922,18 @@
             let cantidad =
                 Number(
                     document
-                        .getElementById("cantidadOperacion")
+                        .getElementById(
+                            "cantidadOperacion"
+                        )
                         .value
                 );
 
 
             if (
                 cantidad <= 0 ||
-                Number.isNaN(cantidad)
+                Number.isNaN(
+                    cantidad
+                )
             ) {
 
                 alert(
@@ -2033,12 +2946,14 @@
 
 
             if (
-                operacionActual === "vender"
+                operacionActual ===
+                "vender"
             ) {
 
                 if (
                     cantidad >
-                    productos[indiceActual].cantidad
+                    productos[indiceActual]
+                        .cantidad
                 ) {
 
                     alert(
@@ -2050,14 +2965,16 @@
                 }
 
 
-                productos[indiceActual].cantidad -=
+                productos[indiceActual]
+                    .cantidad -=
                     cantidad;
 
             }
 
             else {
 
-                productos[indiceActual].cantidad +=
+                productos[indiceActual]
+                    .cantidad +=
                     cantidad;
 
             }
@@ -2075,15 +2992,15 @@
         function cerrarModal() {
 
             document
-                .getElementById("modalCantidad")
-                .classList.remove("activo");
+                .getElementById(
+                    "modalCantidad"
+                )
+                .classList.remove(
+                    "activo"
+                );
 
         }
 
-
-        /* ============================
-           ELIMINAR
-        ============================ */
 
         function eliminarProducto(indice) {
 
@@ -2113,10 +3030,6 @@
         }
 
 
-        /* ============================
-           ALERTAS
-        ============================ */
-
         function mostrarAlertas() {
 
             let contenedor =
@@ -2125,7 +3038,8 @@
                 );
 
 
-            contenedor.innerHTML = "";
+            contenedor.innerHTML =
+                "";
 
 
             let agotados =
@@ -2138,13 +3052,21 @@
             let pocos =
                 productos.filter(
                     producto =>
-                        producto.cantidad > 0 &&
-                        producto.cantidad <= producto.minimo
+
+                        producto.cantidad > 0
+
+                        &&
+
+                        producto.cantidad <=
+                        producto.minimo
                 );
 
 
             if (
-                agotados.length === 0 &&
+                agotados.length === 0
+
+                &&
+
                 pocos.length === 0
             ) {
 
@@ -2152,11 +3074,8 @@
 
                     <div class="sin-alertas">
 
-                        🎉 ¡Todo está bien!
-
-                        <br><br>
-
-                        No hay productos que necesiten atención.
+                        No hay productos
+                        que necesiten atención.
 
                     </div>
 
@@ -2172,17 +3091,25 @@
 
                     contenedor.innerHTML += `
 
-                        <div class="alerta alerta-roja">
+                        <div
+                            class="
+                                alerta
+                                alerta-roja
+                            "
+                        >
 
-                            ❌ Producto agotado:
+                            Producto agotado:
 
                             <strong>
+
                                 ${producto.nombre}
+
                             </strong>
 
                             <br>
 
-                            Es necesario reponer este producto.
+                            Es necesario reponer
+                            este producto.
 
                         </div>
 
@@ -2197,12 +3124,19 @@
 
                     contenedor.innerHTML += `
 
-                        <div class="alerta alerta-amarilla">
+                        <div
+                            class="
+                                alerta
+                                alerta-amarilla
+                            "
+                        >
 
-                            ⚠️ Poco stock:
+                            Poco stock:
 
                             <strong>
+
                                 ${producto.nombre}
+
                             </strong>
 
                             <br>
@@ -2221,17 +3155,18 @@
         }
 
 
-        /* ============================
-           RESUMEN
-        ============================ */
-
         function actualizarResumen() {
 
             let pocos =
                 productos.filter(
                     producto =>
-                        producto.cantidad > 0 &&
-                        producto.cantidad <= producto.minimo
+
+                        producto.cantidad > 0
+
+                        &&
+
+                        producto.cantidad <=
+                        producto.minimo
                 );
 
 
@@ -2258,9 +3193,13 @@
                     ) =>
 
                         total +
+
                         (
+
                             producto.cantidad *
+
                             producto.precio
+
                         ),
 
                     0
@@ -2268,42 +3207,50 @@
 
 
             document
-                .getElementById("totalProductos")
+                .getElementById(
+                    "totalProductos"
+                )
                 .innerText =
                 productos.length;
 
 
             document
-                .getElementById("totalPocos")
+                .getElementById(
+                    "totalPocos"
+                )
                 .innerText =
                 pocos.length;
 
 
             document
-                .getElementById("totalAgotados")
+                .getElementById(
+                    "totalAgotados"
+                )
                 .innerText =
                 agotados.length;
 
 
             document
-                .getElementById("valorInventario")
+                .getElementById(
+                    "valorInventario"
+                )
                 .innerText =
                 "S/ " +
                 valorTotal.toFixed(2);
 
 
             actualizarGrafico(
+
                 disponibles.length,
+
                 pocos.length,
+
                 agotados.length
+
             );
 
         }
 
-
-        /* ============================
-           GRAFICO
-        ============================ */
 
         function actualizarGrafico(
             disponibles,
@@ -2316,64 +3263,90 @@
 
 
             let porcentajeDisponible =
+
                 total === 0
+
                     ? 0
-                    : (disponibles / total) * 100;
+
+                    : (
+                        disponibles / total
+                    ) * 100;
 
 
             let porcentajePoco =
+
                 total === 0
+
                     ? 0
-                    : (pocos / total) * 100;
+
+                    : (
+                        pocos / total
+                    ) * 100;
 
 
             let porcentajeAgotado =
+
                 total === 0
+
                     ? 0
-                    : (agotados / total) * 100;
+
+                    : (
+                        agotados / total
+                    ) * 100;
 
 
             document
-                .getElementById("graficoDisponible")
+                .getElementById(
+                    "graficoDisponible"
+                )
                 .innerText =
                 disponibles;
 
 
             document
-                .getElementById("graficoPoco")
+                .getElementById(
+                    "graficoPoco"
+                )
                 .innerText =
                 pocos;
 
 
             document
-                .getElementById("graficoAgotado")
+                .getElementById(
+                    "graficoAgotado"
+                )
                 .innerText =
                 agotados;
 
 
             document
-                .getElementById("barraDisponible")
+                .getElementById(
+                    "barraDisponible"
+                )
                 .style.width =
-                porcentajeDisponible + "%";
+                porcentajeDisponible +
+                "%";
 
 
             document
-                .getElementById("barraPoco")
+                .getElementById(
+                    "barraPoco"
+                )
                 .style.width =
-                porcentajePoco + "%";
+                porcentajePoco +
+                "%";
 
 
             document
-                .getElementById("barraAgotado")
+                .getElementById(
+                    "barraAgotado"
+                )
                 .style.width =
-                porcentajeAgotado + "%";
+                porcentajeAgotado +
+                "%";
 
         }
 
-
-        /* ============================
-           EXPORTAR CSV
-        ============================ */
 
         function exportarCSV() {
 
@@ -2398,11 +3371,14 @@
                 producto => {
 
                     let valor =
+
                         producto.cantidad *
+
                         producto.precio;
 
 
                     csv +=
+
                         `"${producto.nombre}",` +
 
                         `"${producto.categoria}",` +
@@ -2421,20 +3397,29 @@
 
             let blob =
                 new Blob(
+
                     [csv],
+
                     {
+
                         type:
                             "text/csv;charset=utf-8;"
+
                     }
+
                 );
 
 
             let enlace =
-                document.createElement("a");
+                document.createElement(
+                    "a"
+                );
 
 
             enlace.href =
-                URL.createObjectURL(blob);
+                URL.createObjectURL(
+                    blob
+                );
 
 
             enlace.download =
@@ -2446,21 +3431,19 @@
         }
 
 
-        /* ============================
-           MODO OSCURO
-        ============================ */
-
         function cambiarModo() {
 
-            document.body.classList.toggle(
-                "oscuro"
-            );
+            document.body
+                .classList.toggle(
+                    "oscuro"
+                );
 
 
             let oscuro =
-                document.body.classList.contains(
-                    "oscuro"
-                );
+                document.body
+                    .classList.contains(
+                        "oscuro"
+                    );
 
 
             localStorage.setItem(
@@ -2479,20 +3462,19 @@
                 );
 
 
-            if (oscuro === "true") {
+            if (
+                oscuro === "true"
+            ) {
 
-                document.body.classList.add(
-                    "oscuro"
-                );
+                document.body
+                    .classList.add(
+                        "oscuro"
+                    );
 
             }
 
         }
 
-
-        /* ============================
-           ACTUALIZAR TODO
-        ============================ */
 
         function actualizarTodo() {
 
@@ -2505,10 +3487,6 @@
         }
 
 
-        /* ============================
-           INICIO
-        ============================ */
-
         cargarModo();
 
         iniciar();
@@ -2516,4 +3494,5 @@
     </script>
 
 </body>
+
 </html>

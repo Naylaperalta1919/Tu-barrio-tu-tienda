@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tu Barrio, Tu Tienda</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background: #2e7d32;
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+
+        .contenedor {
+            max-width: 900px;
+            margin: 30px auto;
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+        }
+
+        h2 {
+            color: #2e7d32;
+        }
+
+        input {
+            padding: 10px;
+            margin: 5px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+
+        button {
+            padding: 10px 15px;
+            background: #2e7d32;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1b5e20;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 25px;
+        }
+
+        th, td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+            text-align: center;
+        }
+
+        th {
+            background: #e8f5e9;
+        }
+
+        .disponible {
+            color: green;
+            font-weight: bold;
+        }
+
+        .poco {
+            color: orange;
+            font-weight: bold;
+        }
+
+        .agotado {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>📦 Tu Barrio, Tu Tienda</h1>
+    <p>Controla tu inventario de manera fácil</p>
+</header>
+
+<div class="contenedor">
+
+    <h2>Agregar producto</h2>
+
+    <input type="text" id="producto" placeholder="Nombre del producto">
+    <input type="number" id="cantidad" placeholder="Cantidad">
+    <input type="number" id="minimo" placeholder="Cantidad mínima">
+
+    <button onclick="agregarProducto()">Agregar</button>
+
+    <h2>📋 Mi inventario</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Producto</th>
+                <th>Cantidad</th>
+                <th>Mínimo</th>
+                <th>Estado</th>
+            </tr>
+        </thead>
+
+        <tbody id="inventario">
+        </tbody>
+    </table>
+
+</div>
+
+<script>
+
+function agregarProducto() {
+
+    let producto = document.getElementById("producto").value;
+    let cantidad = Number(document.getElementById("cantidad").value);
+    let minimo = Number(document.getElementById("minimo").value);
+
+    if (producto === "" || cantidad < 0 || minimo < 0) {
+        alert("Completa todos los datos correctamente.");
+        return;
+    }
+
+    let estado;
+    let clase;
+
+    if (cantidad === 0) {
+        estado = "🔴 Agotado";
+        clase = "agotado";
+    } 
+    else if (cantidad <= minimo) {
+        estado = "🟡 Poco stock";
+        clase = "poco";
+    } 
+    else {
+        estado = "🟢 Disponible";
+        clase = "disponible";
+    }
+
+    let fila = `
+        <tr>
+            <td>${producto}</td>
+            <td>${cantidad}</td>
+            <td>${minimo}</td>
+            <td class="${clase}">${estado}</td>
+        </tr>
+    `;
+
+    document.getElementById("inventario").innerHTML += fila;
+
+    document.getElementById("producto").value = "";
+    document.getElementById("cantidad").value = "";
+    document.getElementById("minimo").value = "";
+}
+
+</script>
+
+</body>
+</html>

@@ -1050,92 +1050,46 @@
 
 
     <!-- LOGIN -->
-
-    <div
-        id="pantallaLogin"
-        class="pantalla-login"
-    >
-
+    <div id="pantallaLogin" class="pantalla-login">
         <div class="login-caja">
-
-            <h1>
-                Tu Barrio, Tu Tienda
-            </h1>
-
-            <p>
-                Guarda y administra fácilmente
-                el inventario de tu tienda
-            </p>
-
+            <h1>Tu Barrio, Tu Tienda</h1>
+            <p>Guarda y administra fácilmente el inventario de tu tienda</p>
 
             <div class="campo">
-
-                <label>
-                    Nombre
-                </label>
-
-                <input
-                    type="text"
-                    id="nombreUsuario"
-                    placeholder="Ejemplo: Nayla"
-                >
-
+                <label>Nombre</label>
+                <input type="text" id="nombreUsuario" placeholder="Ejemplo: Nayla">
             </div>
-
 
             <div class="campo">
-
-                <label>
-                    Correo electrónico
-                </label>
-
-                <input
-                    type="email"
-                    id="correoUsuario"
-                    placeholder="ejemplo@gmail.com"
-                >
-
+                <label>Correo electrónico</label>
+                <input type="email" id="correoUsuario" placeholder="ejemplo@gmail.com">
             </div>
-
 
             <div class="campo">
-
-                <label>
-                    Nombre de tu tienda
-                </label>
-
-                <input
-                    type="text"
-                    id="nombreTienda"
-                    placeholder="Ejemplo: Mi tienda"
-                >
-
+                <label>Contraseña</label>
+                <input type="password" id="contrasenaUsuario" placeholder="Mínimo 6 caracteres">
             </div>
 
+            <div class="campo">
+                <label>Nombre de tu tienda</label>
+                <input type="text" id="nombreTienda" placeholder="Ejemplo: Mi tienda">
+            </div>
 
-            <button
-                class="boton-principal"
-                style="width: 100%;"
-                onclick="entrar()"
-            >
-                Entrar a mi inventario
+            <button class="boton-principal" style="width: 100%;" onclick="registrarCuenta()">
+                Crear cuenta
             </button>
 
+            <button class="boton-secundario" style="width: 100%; margin-top: 10px;" onclick="entrar()">
+                Iniciar sesión
+            </button>
 
-            <p
-                style="
-                    font-size: 12px;
-                    margin-top: 20px;
-                "
-            >
-                Tus datos se guardan
-                en este navegador.
+            <p style="font-size: 12px; margin-top: 20px;">
+                Tu cuenta y tu inventario se guardarán en Firebase.
             </p>
 
+            <div id="mensajeLogin" class="mensaje"></div>
         </div>
-
     </div>
-
 
     <!-- APLICACION -->
 
@@ -2007,22 +1961,52 @@
     </div>
 
 
+    <!-- FIREBASE -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+        import {
+            getAuth,
+            createUserWithEmailAndPassword,
+            signInWithEmailAndPassword,
+            signOut,
+            onAuthStateChanged
+        } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
+        import {
+            getFirestore,
+            doc,
+            setDoc,
+            getDoc
+        } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyAAgECIx5QI4eJgSrs6cw3ZgV5fkGMovsA",
+            authDomain: "tu-barrio-tu-tienda-8730a.firebaseapp.com",
+            projectId: "tu-barrio-tu-tienda-8730a",
+            storageBucket: "tu-barrio-tu-tienda-8730a.firebasestorage.app",
+            messagingSenderId: "893520799699",
+            appId: "1:893520799699:web:838d4b7f0777de2b6bf126"
+        };
+
+        const app = initializeApp(firebaseConfig);
+
+        window.firebaseServices = {
+            auth: getAuth(app),
+            db: getFirestore(app),
+            createUserWithEmailAndPassword,
+            signInWithEmailAndPassword,
+            signOut,
+            onAuthStateChanged,
+            doc,
+            setDoc,
+            getDoc
+        };
+    </script>
+
     <script>
 
-        let productos =
-            JSON.parse(
-                localStorage.getItem(
-                    "productos"
-                )
-            ) || [];
+        let productos = [];
 
-
-        let usuario =
-            JSON.parse(
-                localStorage.getItem(
-                    "usuario"
-                )
-            ) || null;
+        let usuario = null;
 
 
         let operacionActual =
@@ -2034,79 +2018,129 @@
 
 
         function iniciar() {
+            const { auth, onAuthStateChanged, db, doc, getDoc } = window.firebaseServices;
 
-            if (usuario) {
+            onAuthStateChanged(auth, async (firebaseUser) => {
+                if (!firebaseUser) {
+                    productos = [];
+                    usuario = null;
+                    document.getElementById("app").style.display = "none";
+                    document.getElementById("pantallaLogin").style.display = "flex";
+                    return;
+                }
 
-                mostrarApp();
+                try {
+                    const resultado = await getDoc(doc(db, "users", firebaseUser.uid));
 
-            }
+                    if (resultado.exists()) {
+                        const datos = resultado.data();
 
+                        usuario = {
+                            nombre: datos.nombre || "",
+                            correo: datos.correo || firebaseUser.email || "",
+                            tienda: datos.tienda || ""
+                        };
+
+                        productos = Array.isArray(datos.productos) ? datos.productos : [];
+                    } else {
+                        usuario = {
+                            nombre: "",
+                            correo: firebaseUser.email || "",
+                            tienda: ""
+                        };
+                        productos = [];
+                    }
+
+                    mostrarApp();
+                } catch (error) {
+                    console.error(error);
+                    alert("No se pudieron cargar tus datos.");
+                }
+            });
         }
 
 
-        function entrar() {
+        async function registrarCuenta() {
+            let nombre = document.getElementById("nombreUsuario").value.trim();
+            let correo = document.getElementById("correoUsuario").value.trim();
+            let contrasena = document.getElementById("contrasenaUsuario").value;
+            let tienda = document.getElementById("nombreTienda").value.trim();
 
-            let nombre =
-                document
-                    .getElementById(
-                        "nombreUsuario"
-                    )
-                    .value
-                    .trim();
-
-
-            let correo =
-                document
-                    .getElementById(
-                        "correoUsuario"
-                    )
-                    .value
-                    .trim();
-
-
-            let tienda =
-                document
-                    .getElementById(
-                        "nombreTienda"
-                    )
-                    .value
-                    .trim();
-
-
-            if (
-                nombre === "" ||
-                correo === "" ||
-                tienda === ""
-            ) {
-
-                alert(
-                    "Completa todos los campos."
-                );
-
+            if (!nombre || !correo || !contrasena || !tienda) {
+                mostrarMensajeLogin("Completa todos los campos.");
                 return;
-
             }
 
+            if (contrasena.length < 6) {
+                mostrarMensajeLogin("La contraseña debe tener al menos 6 caracteres.");
+                return;
+            }
 
-            usuario = {
+            try {
+                const { auth, db, createUserWithEmailAndPassword, doc, setDoc } = window.firebaseServices;
+                const credencial = await createUserWithEmailAndPassword(auth, correo, contrasena);
 
-                nombre: nombre,
+                usuario = { nombre, correo, tienda };
+                productos = JSON.parse(localStorage.getItem("productos")) || [];
 
-                correo: correo,
+                await setDoc(doc(db, "users", credencial.user.uid), {
+                    nombre,
+                    correo,
+                    tienda,
+                    productos
+                });
 
-                tienda: tienda
+                mostrarMensajeLogin("¡Cuenta creada correctamente!");
+            } catch (error) {
+                console.error(error);
 
-            };
+                if (error.code === "auth/email-already-in-use") {
+                    mostrarMensajeLogin("Ese correo ya tiene una cuenta. Pulsa Iniciar sesión.");
+                } else if (error.code === "auth/invalid-email") {
+                    mostrarMensajeLogin("El correo no es válido.");
+                } else if (error.code === "auth/weak-password") {
+                    mostrarMensajeLogin("La contraseña debe tener al menos 6 caracteres.");
+                } else {
+                    mostrarMensajeLogin("No se pudo crear la cuenta. Revisa los datos.");
+                }
+            }
+        }
 
 
-            localStorage.setItem(
-                "usuario",
-                JSON.stringify(usuario)
-            );
+        async function entrar() {
+            let correo = document.getElementById("correoUsuario").value.trim();
+            let contrasena = document.getElementById("contrasenaUsuario").value;
+
+            if (!correo || !contrasena) {
+                mostrarMensajeLogin("Escribe tu correo y contraseña.");
+                return;
+            }
+
+            try {
+                const { auth, signInWithEmailAndPassword } = window.firebaseServices;
+                await signInWithEmailAndPassword(auth, correo, contrasena);
+            } catch (error) {
+                console.error(error);
+
+                if (error.code === "auth/invalid-credential" ||
+                    error.code === "auth/wrong-password" ||
+                    error.code === "auth/user-not-found") {
+                    mostrarMensajeLogin("El correo o la contraseña son incorrectos.");
+                } else {
+                    mostrarMensajeLogin("No se pudo iniciar sesión.");
+                }
+            }
+        }
 
 
-            mostrarApp();
+        function mostrarMensajeLogin(texto) {
+            let mensaje = document.getElementById("mensajeLogin");
+            mensaje.innerText = texto;
+            mensaje.style.display = "block";
 
+            setTimeout(function() {
+                mensaje.style.display = "none";
+            }, 4000);
         }
 
 
@@ -2173,33 +2207,40 @@
         }
 
 
-        function cerrarSesion() {
-
-            document
-                .getElementById(
-                    "app"
-                )
-                .style.display =
-                "none";
-
-
-            document
-                .getElementById(
-                    "pantallaLogin"
-                )
-                .style.display =
-                "flex";
-
+        async function cerrarSesion() {
+            try {
+                await window.firebaseServices.signOut(window.firebaseServices.auth);
+            } catch (error) {
+                console.error(error);
+                alert("No se pudo cerrar sesión.");
+            }
         }
 
 
-        function guardarProductos() {
+        async function guardarProductos() {
+            const firebaseUser = window.firebaseServices.auth.currentUser;
 
-            localStorage.setItem(
-                "productos",
-                JSON.stringify(productos)
-            );
+            if (!firebaseUser || !usuario) {
+                return;
+            }
 
+            try {
+                const { db, doc, setDoc } = window.firebaseServices;
+
+                await setDoc(
+                    doc(db, "users", firebaseUser.uid),
+                    {
+                        nombre: usuario.nombre,
+                        correo: usuario.correo,
+                        tienda: usuario.tienda,
+                        productos: productos
+                    },
+                    { merge: true }
+                );
+            } catch (error) {
+                console.error(error);
+                alert("No se pudo guardar el inventario en Firebase.");
+            }
         }
 
 

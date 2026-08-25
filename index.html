@@ -7,27 +7,84 @@
     <title>Tu Barrio, Tu Tienda</title>
 
     <style>
-
         * {
             box-sizing: border-box;
+        }
+
+        :root {
+            --morado: #6a1b9a;
+            --morado-oscuro: #4d126d;
+            --morado-claro: #f0e6f5;
+            --fondo: #f6f2fa;
+            --blanco: #ffffff;
+            --texto: #302536;
+            --texto-suave: #6d6570;
+            --borde: #e7ddeb;
+            --rojo: #c62828;
+            --amarillo: #a66f00;
+            --verde: #24804a;
+        }
+
+        body.oscuro {
+            --fondo: #18121d;
+            --blanco: #251d2a;
+            --texto: #f3edf5;
+            --texto-suave: #c7bdcb;
+            --borde: #403547;
+            --morado-claro: #382342;
         }
 
         body {
             margin: 0;
             font-family: Arial, sans-serif;
-            background: #f6f2fa;
-            color: #302536;
+            background: var(--fondo);
+            color: var(--texto);
+            transition: 0.3s;
         }
 
-        /* ENCABEZADO */
+        /* LOGIN */
+
+        .pantalla-login {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            background: linear-gradient(135deg, #5e1687, #9c3cc7);
+        }
+
+        .login-caja {
+            width: 100%;
+            max-width: 450px;
+            background: white;
+            padding: 35px;
+            border-radius: 20px;
+            box-shadow: 0 10px 35px rgba(0,0,0,0.25);
+        }
+
+        .login-caja h1 {
+            color: var(--morado);
+            margin-top: 0;
+            text-align: center;
+        }
+
+        .login-caja p {
+            text-align: center;
+            color: #777;
+            margin-bottom: 30px;
+        }
+
+        /* HEADER */
 
         header {
             background: linear-gradient(135deg, #5e1687, #812bb3);
             color: white;
-            padding: 25px 35px;
+            padding: 20px 35px;
             display: flex;
             align-items: center;
             justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
             box-shadow: 0 3px 12px rgba(0,0,0,0.15);
         }
 
@@ -42,15 +99,14 @@
             opacity: 0.9;
         }
 
-        /* NAVEGACIÓN */
-
         nav {
             display: flex;
             gap: 8px;
             flex-wrap: wrap;
         }
 
-        nav button {
+        nav button,
+        .boton-modo {
             background: transparent;
             color: white;
             border: 1px solid rgba(255,255,255,0.5);
@@ -61,16 +117,17 @@
         }
 
         nav button:hover,
-        nav button.activo {
+        nav button.activo,
+        .boton-modo:hover {
             background: white;
-            color: #6a1b9a;
+            color: var(--morado);
         }
 
         /* CONTENEDOR */
 
         .contenedor {
             width: 92%;
-            max-width: 1100px;
+            max-width: 1150px;
             margin: 30px auto;
         }
 
@@ -82,23 +139,21 @@
             display: block;
         }
 
-        /* TITULOS */
-
         .titulo {
             margin-bottom: 25px;
         }
 
         .titulo h2 {
             margin-bottom: 5px;
-            color: #64168d;
+            color: var(--morado);
             font-size: 28px;
         }
 
         .titulo p {
-            color: #6d6570;
+            color: var(--texto-suave);
         }
 
-        /* TARJETAS PRINCIPALES */
+        /* TARJETAS */
 
         .tarjetas {
             display: grid;
@@ -107,21 +162,11 @@
         }
 
         .tarjeta {
-            background: white;
+            background: var(--blanco);
             border-radius: 16px;
             padding: 25px;
             box-shadow: 0 4px 14px rgba(72, 28, 91, 0.08);
-            border: 1px solid #eee5f3;
-        }
-
-        .tarjeta h3 {
-            margin-top: 0;
-            color: #64168d;
-        }
-
-        .tarjeta p {
-            color: #6d6570;
-            line-height: 1.5;
+            border: 1px solid var(--borde);
         }
 
         .tarjeta-boton {
@@ -130,14 +175,23 @@
         }
 
         .tarjeta-boton:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 7px 20px rgba(72, 28, 91, 0.15);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(72, 28, 91, 0.18);
+        }
+
+        .tarjeta h3 {
+            margin-top: 0;
+            color: var(--morado);
+        }
+
+        .tarjeta p {
+            color: var(--texto-suave);
+            line-height: 1.5;
         }
 
         .boton-tarjeta {
-            display: inline-block;
             margin-top: 10px;
-            background: #6a1b9a;
+            background: var(--morado);
             color: white;
             padding: 10px 16px;
             border-radius: 8px;
@@ -150,38 +204,40 @@
 
         .resumen {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(4, 1fr);
             gap: 15px;
             margin-bottom: 25px;
         }
 
         .numero {
-            background: white;
+            background: var(--blanco);
             padding: 20px;
             border-radius: 14px;
             text-align: center;
             box-shadow: 0 3px 12px rgba(0,0,0,0.07);
+            border: 1px solid var(--borde);
         }
 
         .numero strong {
             display: block;
-            font-size: 30px;
-            color: #6a1b9a;
+            font-size: 28px;
+            color: var(--morado);
             margin-bottom: 5px;
         }
 
         .numero span {
-            color: #777;
+            color: var(--texto-suave);
             font-size: 14px;
         }
 
         /* FORMULARIOS */
 
         .formulario {
-            background: white;
+            background: var(--blanco);
             padding: 25px;
             border-radius: 16px;
             box-shadow: 0 4px 14px rgba(72, 28, 91, 0.08);
+            border: 1px solid var(--borde);
         }
 
         .campo {
@@ -192,24 +248,27 @@
             display: block;
             margin-bottom: 7px;
             font-weight: bold;
-            color: #4d4251;
         }
 
-        .campo input {
+        .campo input,
+        .campo select {
             width: 100%;
             padding: 13px;
-            border: 1px solid #d5cbd9;
+            border: 1px solid var(--borde);
             border-radius: 8px;
             font-size: 15px;
             outline: none;
+            background: var(--blanco);
+            color: var(--texto);
         }
 
-        .campo input:focus {
-            border-color: #7b1fa2;
+        .campo input:focus,
+        .campo select:focus {
+            border-color: var(--morado);
         }
 
         .boton-principal {
-            background: #6a1b9a;
+            background: var(--morado);
             color: white;
             border: none;
             padding: 12px 20px;
@@ -219,8 +278,8 @@
         }
 
         .boton-secundario {
-            background: #ede3f2;
-            color: #5e1687;
+            background: var(--morado-claro);
+            color: var(--morado);
             border: none;
             padding: 10px 15px;
             border-radius: 8px;
@@ -228,26 +287,31 @@
             font-weight: bold;
         }
 
-        /* TABLA */
+        .boton-peligro {
+            background: #f5dddd;
+            color: var(--rojo);
+            border: none;
+            padding: 10px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        /* INVENTARIO */
 
         .tabla-contenedor {
-            background: white;
+            background: var(--blanco);
             border-radius: 16px;
             padding: 20px;
-            box-shadow: 0 4px 14px rgba(72, 28, 91, 0.08);
             overflow-x: auto;
+            border: 1px solid var(--borde);
         }
 
-        .barra-busqueda {
+        .filtros {
+            display: grid;
+            grid-template-columns: 2fr 1fr auto;
+            gap: 12px;
             margin-bottom: 20px;
-        }
-
-        .barra-busqueda input {
-            width: 100%;
-            padding: 13px;
-            border: 1px solid #d5cbd9;
-            border-radius: 8px;
-            font-size: 15px;
         }
 
         table {
@@ -256,31 +320,35 @@
         }
 
         th {
-            background: #eee4f4;
-            color: #4d126d;
+            background: var(--morado-claro);
+            color: var(--morado-oscuro);
             padding: 13px;
             text-align: center;
         }
 
         td {
             padding: 13px;
-            border-bottom: 1px solid #eee;
+            border-bottom: 1px solid var(--borde);
             text-align: center;
         }
 
         .disponible {
-            color: #6a1b9a;
+            color: var(--verde);
             font-weight: bold;
         }
 
         .poco {
-            color: #9a6900;
+            color: var(--amarillo);
             font-weight: bold;
         }
 
         .agotado {
-            color: #c62828;
+            color: var(--rojo);
             font-weight: bold;
+        }
+
+        .acciones {
+            min-width: 220px;
         }
 
         .acciones button {
@@ -294,17 +362,22 @@
 
         .vender {
             background: #f0e9f4;
-            color: #5e1687;
+            color: var(--morado);
         }
 
         .recibir {
-            background: #dcd0e5;
-            color: #4a1266;
+            background: #dcecdf;
+            color: var(--verde);
+        }
+
+        .editar {
+            background: #e3e8f7;
+            color: #3155a3;
         }
 
         .borrar {
             background: #f5dddd;
-            color: #a51c1c;
+            color: var(--rojo);
         }
 
         /* ALERTAS */
@@ -333,1135 +406,2114 @@
         }
 
         .sin-alertas {
-            background: white;
+            background: var(--blanco);
             padding: 30px;
             text-align: center;
             border-radius: 14px;
-            color: #777;
+            color: var(--texto-suave);
         }
 
-        /* TIKTOK */
+        /* GRAFICO */
 
-        .tiktok-caja {
-            text-align: center;
-            padding: 45px 25px;
-            background: white;
+        .grafico-caja {
+            background: var(--blanco);
+            padding: 25px;
             border-radius: 16px;
-            box-shadow: 0 4px 14px rgba(72, 28, 91, 0.08);
+            border: 1px solid var(--borde);
+            margin-top: 25px;
         }
 
-        .tiktok-caja h2 {
-            color: #64168d;
+        .barra {
+            margin-bottom: 18px;
         }
 
-        .boton-tiktok {
-            display: inline-block;
-            margin-top: 15px;
-            background: #111;
-            color: white;
-            padding: 13px 22px;
-            border-radius: 8px;
-            text-decoration: none;
+        .barra-titulo {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 7px;
             font-weight: bold;
         }
 
-        /* MENSAJES */
+        .barra-fondo {
+            height: 24px;
+            background: var(--morado-claro);
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .barra-relleno {
+            height: 100%;
+            background: var(--morado);
+            border-radius: 20px;
+            transition: width 0.5s;
+        }
+
+        /* PERFIL */
+
+        .perfil-caja {
+            background: var(--blanco);
+            padding: 30px;
+            border-radius: 16px;
+            border: 1px solid var(--borde);
+            max-width: 650px;
+        }
+
+        .dato-perfil {
+            padding: 15px;
+            background: var(--morado-claro);
+            border-radius: 10px;
+            margin-bottom: 12px;
+        }
+
+        /* MENSAJE */
 
         .mensaje {
             display: none;
             margin-top: 15px;
             padding: 12px;
             border-radius: 8px;
-            background: #e8def0;
-            color: #5e1687;
+            background: var(--morado-claro);
+            color: var(--morado);
         }
 
-        /* RESPONSIVE */
+        /* MODAL */
 
-        @media (max-width: 750px) {
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.55);
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            z-index: 10;
+        }
+
+        .modal.activo {
+            display: flex;
+        }
+
+        .modal-contenido {
+            width: 100%;
+            max-width: 500px;
+            background: var(--blanco);
+            padding: 25px;
+            border-radius: 18px;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-botones {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 800px) {
 
             header {
                 flex-direction: column;
-                gap: 20px;
                 text-align: center;
-            }
-
-            .tarjetas {
-                grid-template-columns: 1fr;
-            }
-
-            .resumen {
-                grid-template-columns: 1fr;
             }
 
             nav {
                 justify-content: center;
             }
 
+            .tarjetas,
+            .resumen {
+                grid-template-columns: 1fr;
+            }
+
+            .filtros {
+                grid-template-columns: 1fr;
+            }
         }
-
     </style>
-
 </head>
-
 
 <body>
 
+    <!-- LOGIN -->
 
-<header>
+    <div id="pantallaLogin" class="pantalla-login">
 
-    <div class="logo">
+        <div class="login-caja">
 
-        <h1>Tu Barrio, Tu Tienda</h1>
+            <h1>🏪 Tu Barrio, Tu Tienda</h1>
 
-        <p>Controla tu inventario de manera fácil</p>
+            <p>
+                Guarda y administra fácilmente el inventario de tu tienda
+            </p>
+
+            <div class="campo">
+                <label>Nombre</label>
+
+                <input
+                    type="text"
+                    id="nombreUsuario"
+                    placeholder="Ejemplo: Nayla"
+                >
+            </div>
+
+            <div class="campo">
+                <label>Correo electrónico</label>
+
+                <input
+                    type="email"
+                    id="correoUsuario"
+                    placeholder="ejemplo@gmail.com"
+                >
+            </div>
+
+            <div class="campo">
+                <label>Nombre de tu tienda</label>
+
+                <input
+                    type="text"
+                    id="nombreTienda"
+                    placeholder="Ejemplo: Bodega Nayla"
+                >
+            </div>
+
+            <button
+                class="boton-principal"
+                style="width: 100%;"
+                onclick="entrar()"
+            >
+                Entrar a mi inventario
+            </button>
+
+            <p style="font-size: 12px; margin-top: 20px;">
+                Tus datos se guardan en este navegador.
+            </p>
+
+        </div>
 
     </div>
 
 
-    <nav>
+    <!-- APP -->
 
-        <button
-            onclick="mostrarSeccion('inicio')"
-            class="activo"
-            id="nav-inicio"
-        >
-            Inicio
-        </button>
+    <div id="app" style="display: none;">
 
-        <button
-            onclick="mostrarSeccion('inventario')"
-            id="nav-inventario"
-        >
-            Inventario
-        </button>
+        <header>
 
-        <button
-            onclick="mostrarSeccion('agregar')"
-            id="nav-agregar"
-        >
-            Agregar producto
-        </button>
+            <div class="logo">
 
-        <button
-            onclick="mostrarSeccion('alertas')"
-            id="nav-alertas"
-        >
-            Alertas
-        </button>
+                <h1 id="tituloTienda">
+                    Tu Barrio, Tu Tienda
+                </h1>
 
-    </nav>
+                <p>
+                    Controla tu inventario de manera fácil
+                </p>
 
-</header>
+            </div>
+
+            <nav>
+
+                <button
+                    onclick="mostrarSeccion('inicio')"
+                    class="activo"
+                    id="nav-inicio"
+                >
+                    Inicio
+                </button>
+
+                <button
+                    onclick="mostrarSeccion('inventario')"
+                    id="nav-inventario"
+                >
+                    Inventario
+                </button>
+
+                <button
+                    onclick="mostrarSeccion('agregar')"
+                    id="nav-agregar"
+                >
+                    Agregar
+                </button>
+
+                <button
+                    onclick="mostrarSeccion('alertas')"
+                    id="nav-alertas"
+                >
+                    Alertas
+                </button>
+
+                <button
+                    onclick="mostrarSeccion('perfil')"
+                    id="nav-perfil"
+                >
+                    Mi perfil
+                </button>
+
+                <button
+                    class="boton-modo"
+                    onclick="cambiarModo()"
+                >
+                    🌙
+                </button>
+
+            </nav>
+
+        </header>
 
 
-<div class="contenedor">
+        <div class="contenedor">
 
 
-    <!-- INICIO -->
+            <!-- INICIO -->
 
-    <section
-        id="inicio"
-        class="seccion activa"
+            <section
+                id="inicio"
+                class="seccion activa"
+            >
+
+                <div class="titulo">
+
+                    <h2>
+                        Hola, <span id="saludoUsuario"></span> 👋
+                    </h2>
+
+                    <p>
+                        Aquí tienes un resumen de tu inventario.
+                    </p>
+
+                </div>
+
+
+                <div class="resumen">
+
+                    <div class="numero">
+
+                        <strong id="totalProductos">0</strong>
+
+                        <span>Productos registrados</span>
+
+                    </div>
+
+                    <div class="numero">
+
+                        <strong id="totalPocos">0</strong>
+
+                        <span>Con poco stock</span>
+
+                    </div>
+
+                    <div class="numero">
+
+                        <strong id="totalAgotados">0</strong>
+
+                        <span>Agotados</span>
+
+                    </div>
+
+                    <div class="numero">
+
+                        <strong id="valorInventario">
+                            S/ 0.00
+                        </strong>
+
+                        <span>Valor del inventario</span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="tarjetas">
+
+                    <div
+                        class="tarjeta tarjeta-boton"
+                        onclick="mostrarSeccion('inventario')"
+                    >
+
+                        <h3>📦 Inventario</h3>
+
+                        <p>
+                            Revisa, busca y administra todos tus productos.
+                        </p>
+
+                        <button class="boton-tarjeta">
+                            Ver inventario
+                        </button>
+
+                    </div>
+
+
+                    <div
+                        class="tarjeta tarjeta-boton"
+                        onclick="mostrarSeccion('agregar')"
+                    >
+
+                        <h3>➕ Agregar producto</h3>
+
+                        <p>
+                            Registra nuevos productos con precio y categoría.
+                        </p>
+
+                        <button class="boton-tarjeta">
+                            Agregar producto
+                        </button>
+
+                    </div>
+
+
+                    <div
+                        class="tarjeta tarjeta-boton"
+                        onclick="mostrarSeccion('alertas')"
+                    >
+
+                        <h3>⚠️ Alertas</h3>
+
+                        <p>
+                            Revisa qué productos necesitan ser repuestos.
+                        </p>
+
+                        <button class="boton-tarjeta">
+                            Ver alertas
+                        </button>
+
+                    </div>
+
+
+                    <div
+                        class="tarjeta tarjeta-boton"
+                        onclick="exportarCSV()"
+                    >
+
+                        <h3>📥 Exportar</h3>
+
+                        <p>
+                            Descarga una copia de tu inventario.
+                        </p>
+
+                        <button class="boton-tarjeta">
+                            Descargar CSV
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div class="grafico-caja">
+
+                    <h3>
+                        📊 Estado general del inventario
+                    </h3>
+
+                    <div class="barra">
+
+                        <div class="barra-titulo">
+
+                            <span>Disponible</span>
+
+                            <span id="graficoDisponible">0</span>
+
+                        </div>
+
+                        <div class="barra-fondo">
+
+                            <div
+                                id="barraDisponible"
+                                class="barra-relleno"
+                                style="width: 0%;"
+                            ></div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="barra">
+
+                        <div class="barra-titulo">
+
+                            <span>Poco stock</span>
+
+                            <span id="graficoPoco">0</span>
+
+                        </div>
+
+                        <div class="barra-fondo">
+
+                            <div
+                                id="barraPoco"
+                                class="barra-relleno"
+                                style="width: 0%;"
+                            ></div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="barra">
+
+                        <div class="barra-titulo">
+
+                            <span>Agotado</span>
+
+                            <span id="graficoAgotado">0</span>
+
+                        </div>
+
+                        <div class="barra-fondo">
+
+                            <div
+                                id="barraAgotado"
+                                class="barra-relleno"
+                                style="width: 0%;"
+                            ></div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- INVENTARIO -->
+
+            <section
+                id="inventario"
+                class="seccion"
+            >
+
+                <div class="titulo">
+
+                    <h2>Mi inventario</h2>
+
+                    <p>
+                        Consulta y administra todos tus productos.
+                    </p>
+
+                </div>
+
+
+                <div class="tabla-contenedor">
+
+                    <div class="filtros">
+
+                        <input
+                            type="text"
+                            id="buscador"
+                            placeholder="🔍 Buscar producto..."
+                            oninput="mostrarInventario()"
+                        >
+
+                        <select
+                            id="filtroCategoria"
+                            onchange="mostrarInventario()"
+                        >
+
+                            <option value="">
+                                Todas las categorías
+                            </option>
+
+                            <option value="Bebidas">
+                                Bebidas
+                            </option>
+
+                            <option value="Snacks">
+                                Snacks
+                            </option>
+
+                            <option value="Limpieza">
+                                Limpieza
+                            </option>
+
+                            <option value="Lácteos">
+                                Lácteos
+                            </option>
+
+                            <option value="Otros">
+                                Otros
+                            </option>
+
+                        </select>
+
+                        <button
+                            class="boton-secundario"
+                            onclick="exportarCSV()"
+                        >
+                            📥 Exportar
+                        </button>
+
+                    </div>
+
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>Producto</th>
+
+                                <th>Categoría</th>
+
+                                <th>Stock</th>
+
+                                <th>Mínimo</th>
+
+                                <th>Precio</th>
+
+                                <th>Estado</th>
+
+                                <th>Acciones</th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="tablaInventario"></tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+
+            <!-- AGREGAR -->
+
+            <section
+                id="agregar"
+                class="seccion"
+            >
+
+                <div class="titulo">
+
+                    <h2 id="tituloFormulario">
+                        Agregar producto
+                    </h2>
+
+                    <p>
+                        Registra los productos disponibles en tu tienda.
+                    </p>
+
+                </div>
+
+
+                <div class="formulario">
+
+                    <input
+                        type="hidden"
+                        id="indiceEditar"
+                    >
+
+
+                    <div class="campo">
+
+                        <label>
+                            Nombre del producto
+                        </label>
+
+                        <input
+                            type="text"
+                            id="nombreProducto"
+                            placeholder="Ejemplo: Galletas"
+                        >
+
+                    </div>
+
+
+                    <div class="campo">
+
+                        <label>
+                            Categoría
+                        </label>
+
+                        <select id="categoriaProducto">
+
+                            <option value="">
+                                Selecciona una categoría
+                            </option>
+
+                            <option value="Bebidas">
+                                Bebidas
+                            </option>
+
+                            <option value="Snacks">
+                                Snacks
+                            </option>
+
+                            <option value="Limpieza">
+                                Limpieza
+                            </option>
+
+                            <option value="Lácteos">
+                                Lácteos
+                            </option>
+
+                            <option value="Otros">
+                                Otros
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="campo">
+
+                        <label>
+                            Cantidad disponible
+                        </label>
+
+                        <input
+                            type="number"
+                            id="cantidadProducto"
+                            min="0"
+                            placeholder="Ejemplo: 20"
+                        >
+
+                    </div>
+
+
+                    <div class="campo">
+
+                        <label>
+                            Stock mínimo
+                        </label>
+
+                        <input
+                            type="number"
+                            id="minimoProducto"
+                            min="0"
+                            placeholder="Ejemplo: 5"
+                        >
+
+                    </div>
+
+
+                    <div class="campo">
+
+                        <label>
+                            Precio por unidad (S/)
+                        </label>
+
+                        <input
+                            type="number"
+                            id="precioProducto"
+                            min="0"
+                            step="0.01"
+                            placeholder="Ejemplo: 2.50"
+                        >
+
+                    </div>
+
+
+                    <button
+                        class="boton-principal"
+                        onclick="guardarProducto()"
+                    >
+                        Guardar producto
+                    </button>
+
+                    <button
+                        class="boton-secundario"
+                        onclick="limpiarFormulario()"
+                    >
+                        Limpiar
+                    </button>
+
+
+                    <div
+                        id="mensaje"
+                        class="mensaje"
+                    ></div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ALERTAS -->
+
+            <section
+                id="alertas"
+                class="seccion"
+            >
+
+                <div class="titulo">
+
+                    <h2>⚠️ Alertas de stock</h2>
+
+                    <p>
+                        Aquí puedes revisar los productos que necesitan atención.
+                    </p>
+
+                </div>
+
+
+                <div
+                    id="listaAlertas"
+                    class="alertas"
+                ></div>
+
+            </section>
+
+
+            <!-- PERFIL -->
+
+            <section
+                id="perfil"
+                class="seccion"
+            >
+
+                <div class="titulo">
+
+                    <h2>Mi perfil</h2>
+
+                    <p>
+                        Información de tu tienda.
+                    </p>
+
+                </div>
+
+
+                <div class="perfil-caja">
+
+                    <div class="dato-perfil">
+
+                        <strong>👤 Usuario:</strong>
+
+                        <span id="perfilNombre"></span>
+
+                    </div>
+
+
+                    <div class="dato-perfil">
+
+                        <strong>📧 Correo:</strong>
+
+                        <span id="perfilCorreo"></span>
+
+                    </div>
+
+
+                    <div class="dato-perfil">
+
+                        <strong>🏪 Tienda:</strong>
+
+                        <span id="perfilTienda"></span>
+
+                    </div>
+
+
+                    <button
+                        class="boton-peligro"
+                        onclick="cerrarSesion()"
+                    >
+                        Cerrar sesión
+                    </button>
+
+                </div>
+
+            </section>
+
+
+        </div>
+
+    </div>
+
+
+    <!-- MODAL -->
+
+    <div
+        id="modalCantidad"
+        class="modal"
     >
 
-        <div class="titulo">
+        <div class="modal-contenido">
 
-            <h2>Panel principal</h2>
+            <h2 id="tituloModal">
+                Actualizar producto
+            </h2>
 
-            <p>
-                Administra los productos de tu tienda desde un solo lugar.
-            </p>
+            <p id="textoModal"></p>
 
-        </div>
+            <div class="campo">
 
-
-        <div class="resumen">
-
-            <div class="numero">
-
-                <strong id="totalProductos">0</strong>
-
-                <span>Productos registrados</span>
-
-            </div>
-
-
-            <div class="numero">
-
-                <strong id="totalPocos">0</strong>
-
-                <span>Con poco stock</span>
-
-            </div>
-
-
-            <div class="numero">
-
-                <strong id="totalAgotados">0</strong>
-
-                <span>Agotados</span>
-
-            </div>
-
-        </div>
-
-
-        <div class="tarjetas">
-
-
-            <div
-                class="tarjeta tarjeta-boton"
-                onclick="mostrarSeccion('inventario')"
-            >
-
-                <h3>Inventario</h3>
-
-                <p>
-                    Revisa todos los productos de tu tienda y modifica
-                    fácilmente las cantidades.
-                </p>
-
-                <button class="boton-tarjeta">
-                    Ver inventario
-                </button>
-
-            </div>
-
-
-            <div
-                class="tarjeta tarjeta-boton"
-                onclick="mostrarSeccion('agregar')"
-            >
-
-                <h3>Agregar producto</h3>
-
-                <p>
-                    Registra un nuevo producto indicando su cantidad
-                    disponible y el stock mínimo.
-                </p>
-
-                <button class="boton-tarjeta">
-                    Agregar producto
-                </button>
-
-            </div>
-
-
-            <div
-                class="tarjeta tarjeta-boton"
-                onclick="mostrarSeccion('alertas')"
-            >
-
-                <h3>Alertas de stock</h3>
-
-                <p>
-                    Revisa rápidamente qué productos necesitan ser
-                    repuestos.
-                </p>
-
-                <button class="boton-tarjeta">
-                    Ver alertas
-                </button>
-
-            </div>
-
-
-            <div
-                class="tarjeta tarjeta-boton"
-                onclick="mostrarSeccion('tiktok')"
-            >
-
-                <h3>Nuestro TikTok</h3>
-
-                <p>
-                    Conoce nuestro proyecto y encuentra nuestras
-                    publicaciones en TikTok.
-                </p>
-
-                <button class="boton-tarjeta">
-                    Ver TikTok
-                </button>
-
-            </div>
-
-
-        </div>
-
-    </section>
-
-
-
-    <!-- INVENTARIO -->
-
-    <section
-        id="inventario"
-        class="seccion"
-    >
-
-        <div class="titulo">
-
-            <h2>Mi inventario</h2>
-
-            <p>
-                Consulta y actualiza las cantidades de tus productos.
-            </p>
-
-        </div>
-
-
-        <div class="tabla-contenedor">
-
-            <div class="barra-busqueda">
+                <label>Cantidad</label>
 
                 <input
-                    type="text"
-                    id="buscador"
-                    placeholder="Buscar un producto..."
-                    oninput="mostrarInventario()"
+                    type="number"
+                    id="cantidadOperacion"
+                    min="1"
+                    value="1"
                 >
 
             </div>
 
+            <div class="modal-botones">
 
-            <table>
+                <button
+                    class="boton-principal"
+                    onclick="confirmarOperacion()"
+                >
+                    Confirmar
+                </button>
 
-                <thead>
+                <button
+                    class="boton-secundario"
+                    onclick="cerrarModal()"
+                >
+                    Cancelar
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        /* ============================
+           DATOS
+        ============================ */
+
+        let productos =
+            JSON.parse(
+                localStorage.getItem("productos")
+            ) || [];
+
+        let usuario =
+            JSON.parse(
+                localStorage.getItem("usuario")
+            ) || null;
+
+        let operacionActual = null;
+
+        let indiceActual = null;
+
+
+        /* ============================
+           INICIAR
+        ============================ */
+
+        function iniciar() {
+
+            if (usuario) {
+
+                mostrarApp();
+
+            }
+
+        }
+
+
+        /* ============================
+           ENTRAR
+        ============================ */
+
+        function entrar() {
+
+            let nombre =
+                document
+                    .getElementById("nombreUsuario")
+                    .value
+                    .trim();
+
+            let correo =
+                document
+                    .getElementById("correoUsuario")
+                    .value
+                    .trim();
+
+            let tienda =
+                document
+                    .getElementById("nombreTienda")
+                    .value
+                    .trim();
+
+
+            if (
+                nombre === "" ||
+                correo === "" ||
+                tienda === ""
+            ) {
+
+                alert(
+                    "Completa todos los campos."
+                );
+
+                return;
+
+            }
+
+
+            usuario = {
+
+                nombre: nombre,
+
+                correo: correo,
+
+                tienda: tienda
+
+            };
+
+
+            localStorage.setItem(
+                "usuario",
+                JSON.stringify(usuario)
+            );
+
+
+            mostrarApp();
+
+        }
+
+
+        /* ============================
+           MOSTRAR APP
+        ============================ */
+
+        function mostrarApp() {
+
+            document
+                .getElementById("pantallaLogin")
+                .style.display = "none";
+
+            document
+                .getElementById("app")
+                .style.display = "block";
+
+
+            document
+                .getElementById("tituloTienda")
+                .innerText =
+                usuario.tienda;
+
+
+            document
+                .getElementById("saludoUsuario")
+                .innerText =
+                usuario.nombre;
+
+
+            document
+                .getElementById("perfilNombre")
+                .innerText =
+                usuario.nombre;
+
+
+            document
+                .getElementById("perfilCorreo")
+                .innerText =
+                usuario.correo;
+
+
+            document
+                .getElementById("perfilTienda")
+                .innerText =
+                usuario.tienda;
+
+
+            actualizarTodo();
+
+        }
+
+
+        /* ============================
+           CERRAR SESIÓN
+        ============================ */
+
+        function cerrarSesion() {
+
+            document
+                .getElementById("app")
+                .style.display = "none";
+
+            document
+                .getElementById("pantallaLogin")
+                .style.display = "flex";
+
+        }
+
+
+        /* ============================
+           GUARDAR
+        ============================ */
+
+        function guardarProductos() {
+
+            localStorage.setItem(
+                "productos",
+                JSON.stringify(productos)
+            );
+
+        }
+
+
+        /* ============================
+           NAVEGACIÓN
+        ============================ */
+
+        function mostrarSeccion(nombre) {
+
+            document
+                .querySelectorAll(".seccion")
+                .forEach(
+                    seccion =>
+                        seccion.classList.remove("activa")
+                );
+
+
+            document
+                .getElementById(nombre)
+                .classList.add("activa");
+
+
+            document
+                .querySelectorAll("nav button")
+                .forEach(
+                    boton =>
+                        boton.classList.remove("activo")
+                );
+
+
+            let botonActivo =
+                document.getElementById(
+                    "nav-" + nombre
+                );
+
+
+            if (botonActivo) {
+
+                botonActivo.classList.add("activo");
+
+            }
+
+
+            if (nombre === "inventario") {
+
+                mostrarInventario();
+
+            }
+
+
+            if (nombre === "alertas") {
+
+                mostrarAlertas();
+
+            }
+
+
+            actualizarResumen();
+
+        }
+
+
+        /* ============================
+           GUARDAR PRODUCTO
+        ============================ */
+
+        function guardarProducto() {
+
+            let nombre =
+                document
+                    .getElementById("nombreProducto")
+                    .value
+                    .trim();
+
+            let categoria =
+                document
+                    .getElementById("categoriaProducto")
+                    .value;
+
+            let cantidad =
+                Number(
+                    document
+                        .getElementById("cantidadProducto")
+                        .value
+                );
+
+            let minimo =
+                Number(
+                    document
+                        .getElementById("minimoProducto")
+                        .value
+                );
+
+            let precio =
+                Number(
+                    document
+                        .getElementById("precioProducto")
+                        .value
+                );
+
+            let indiceEditar =
+                document
+                    .getElementById("indiceEditar")
+                    .value;
+
+
+            if (
+                nombre === "" ||
+                categoria === "" ||
+                document
+                    .getElementById("cantidadProducto")
+                    .value === "" ||
+                document
+                    .getElementById("minimoProducto")
+                    .value === "" ||
+                document
+                    .getElementById("precioProducto")
+                    .value === "" ||
+                cantidad < 0 ||
+                minimo < 0 ||
+                precio < 0
+            ) {
+
+                alert(
+                    "Completa todos los campos correctamente."
+                );
+
+                return;
+
+            }
+
+
+            let producto = {
+
+                nombre: nombre,
+
+                categoria: categoria,
+
+                cantidad: cantidad,
+
+                minimo: minimo,
+
+                precio: precio
+
+            };
+
+
+            if (indiceEditar !== "") {
+
+                productos[indiceEditar] =
+                    producto;
+
+                mostrarMensaje(
+                    "Producto actualizado correctamente."
+                );
+
+            }
+
+            else {
+
+                productos.push(producto);
+
+                mostrarMensaje(
+                    "Producto guardado correctamente."
+                );
+
+            }
+
+
+            guardarProductos();
+
+            limpiarFormulario();
+
+            actualizarTodo();
+
+        }
+
+
+        /* ============================
+           LIMPIAR FORMULARIO
+        ============================ */
+
+        function limpiarFormulario() {
+
+            document
+                .getElementById("nombreProducto")
+                .value = "";
+
+            document
+                .getElementById("categoriaProducto")
+                .value = "";
+
+            document
+                .getElementById("cantidadProducto")
+                .value = "";
+
+            document
+                .getElementById("minimoProducto")
+                .value = "";
+
+            document
+                .getElementById("precioProducto")
+                .value = "";
+
+            document
+                .getElementById("indiceEditar")
+                .value = "";
+
+            document
+                .getElementById("tituloFormulario")
+                .innerText =
+                "Agregar producto";
+
+        }
+
+
+        /* ============================
+           MENSAJE
+        ============================ */
+
+        function mostrarMensaje(texto) {
+
+            let mensaje =
+                document
+                    .getElementById("mensaje");
+
+            mensaje.innerText = texto;
+
+            mensaje.style.display = "block";
+
+
+            setTimeout(
+                function() {
+
+                    mensaje.style.display = "none";
+
+                },
+                3000
+            );
+
+        }
+
+
+        /* ============================
+           EDITAR
+        ============================ */
+
+        function editarProducto(indice) {
+
+            let producto =
+                productos[indice];
+
+
+            document
+                .getElementById("nombreProducto")
+                .value =
+                producto.nombre;
+
+            document
+                .getElementById("categoriaProducto")
+                .value =
+                producto.categoria;
+
+            document
+                .getElementById("cantidadProducto")
+                .value =
+                producto.cantidad;
+
+            document
+                .getElementById("minimoProducto")
+                .value =
+                producto.minimo;
+
+            document
+                .getElementById("precioProducto")
+                .value =
+                producto.precio;
+
+            document
+                .getElementById("indiceEditar")
+                .value =
+                indice;
+
+            document
+                .getElementById("tituloFormulario")
+                .innerText =
+                "Editar producto";
+
+
+            mostrarSeccion("agregar");
+
+        }
+
+
+        /* ============================
+           ESTADO
+        ============================ */
+
+        function obtenerEstado(producto) {
+
+            if (
+                producto.cantidad === 0
+            ) {
+
+                return {
+
+                    texto: "Agotado",
+
+                    clase: "agotado"
+
+                };
+
+            }
+
+
+            if (
+                producto.cantidad <= producto.minimo
+            ) {
+
+                return {
+
+                    texto: "Poco stock",
+
+                    clase: "poco"
+
+                };
+
+            }
+
+
+            return {
+
+                texto: "Disponible",
+
+                clase: "disponible"
+
+            };
+
+        }
+
+
+        /* ============================
+           MOSTRAR INVENTARIO
+        ============================ */
+
+        function mostrarInventario() {
+
+            let tabla =
+                document.getElementById(
+                    "tablaInventario"
+                );
+
+
+            let busqueda =
+                document
+                    .getElementById("buscador")
+                    .value
+                    .toLowerCase();
+
+
+            let categoria =
+                document
+                    .getElementById("filtroCategoria")
+                    .value;
+
+
+            let filtrados =
+                productos.filter(
+                    producto =>
+
+                        producto.nombre
+                            .toLowerCase()
+                            .includes(busqueda)
+
+                        &&
+
+                        (
+                            categoria === "" ||
+                            producto.categoria === categoria
+                        )
+                );
+
+
+            tabla.innerHTML = "";
+
+
+            if (filtrados.length === 0) {
+
+                tabla.innerHTML = `
 
                     <tr>
 
-                        <th>Producto</th>
+                        <td colspan="7">
 
-                        <th>Stock</th>
+                            No se encontraron productos.
 
-                        <th>Stock mínimo</th>
-
-                        <th>Estado</th>
-
-                        <th>Acciones</th>
+                        </td>
 
                     </tr>
 
-                </thead>
+                `;
 
+                return;
 
-                <tbody id="tablaInventario">
+            }
 
-                </tbody>
 
-            </table>
+            filtrados.forEach(
+                producto => {
 
-        </div>
+                    let indice =
+                        productos.indexOf(producto);
 
-    </section>
+                    let estado =
+                        obtenerEstado(producto);
 
 
+                    tabla.innerHTML += `
 
-    <!-- AGREGAR -->
+                        <tr>
 
-    <section
-        id="agregar"
-        class="seccion"
-    >
+                            <td>
+                                <strong>
+                                    ${producto.nombre}
+                                </strong>
+                            </td>
 
-        <div class="titulo">
+                            <td>
+                                ${producto.categoria}
+                            </td>
 
-            <h2>Agregar producto</h2>
+                            <td>
+                                ${producto.cantidad}
+                            </td>
 
-            <p>
-                Registra los productos disponibles en tu tienda.
-            </p>
+                            <td>
+                                ${producto.minimo}
+                            </td>
 
-        </div>
+                            <td>
+                                S/ ${producto.precio.toFixed(2)}
+                            </td>
 
+                            <td
+                                class="${estado.clase}"
+                            >
+                                ${estado.texto}
+                            </td>
 
-        <div class="formulario">
+                            <td class="acciones">
 
+                                <button
+                                    class="vender"
+                                    onclick="abrirOperacion(
+                                        'vender',
+                                        ${indice}
+                                    )"
+                                >
+                                    ➖ Vender
+                                </button>
 
-            <div class="campo">
+                                <button
+                                    class="recibir"
+                                    onclick="abrirOperacion(
+                                        'recibir',
+                                        ${indice}
+                                    )"
+                                >
+                                    ➕ Recibir
+                                </button>
 
-                <label>
-                    Nombre del producto
-                </label>
+                                <button
+                                    class="editar"
+                                    onclick="editarProducto(
+                                        ${indice}
+                                    )"
+                                >
+                                    ✏️ Editar
+                                </button>
 
-                <input
-                    type="text"
-                    id="nombreProducto"
-                    placeholder="Ejemplo: Galletas"
-                >
+                                <button
+                                    class="borrar"
+                                    onclick="eliminarProducto(
+                                        ${indice}
+                                    )"
+                                >
+                                    🗑 Eliminar
+                                </button>
 
-            </div>
+                            </td>
 
+                        </tr>
 
-            <div class="campo">
+                    `;
 
-                <label>
-                    Cantidad disponible
-                </label>
+                }
+            );
 
-                <input
-                    type="number"
-                    id="cantidadProducto"
-                    placeholder="Ejemplo: 20"
-                    min="0"
-                >
+        }
 
-            </div>
 
+        /* ============================
+           OPERACIONES
+        ============================ */
 
-            <div class="campo">
+        function abrirOperacion(
+            tipo,
+            indice
+        ) {
 
-                <label>
-                    Stock mínimo
-                </label>
+            operacionActual = tipo;
 
-                <input
-                    type="number"
-                    id="minimoProducto"
-                    placeholder="Ejemplo: 5"
-                    min="0"
-                >
+            indiceActual = indice;
 
-            </div>
 
-
-            <button
-                class="boton-principal"
-                onclick="agregarProducto()"
-            >
-                Guardar producto
-            </button>
-
-
-            <div
-                id="mensaje"
-                class="mensaje"
-            ></div>
-
-
-        </div>
-
-    </section>
-
-
-
-    <!-- ALERTAS -->
-
-    <section
-        id="alertas"
-        class="seccion"
-    >
-
-        <div class="titulo">
-
-            <h2>Alertas de stock</h2>
-
-            <p>
-                Aquí puedes revisar los productos que necesitan atención.
-            </p>
-
-        </div>
-
-
-        <div
-            id="listaAlertas"
-            class="alertas"
-        >
-
-        </div>
-
-    </section>
-
-
-
-    <!-- TIKTOK -->
-
-    <section
-        id="tiktok"
-        class="seccion"
-    >
-
-        <div class="tiktok-caja">
-
-            <h2>Tu Barrio, Tu Tienda</h2>
-
-            <p>
-                Conoce nuestro proyecto y síguenos en TikTok.
-            </p>
-
-
-            <a
-                class="boton-tiktok"
-                href="https://www.tiktok.com/@tu.barrio.tu.tien?_r=1&_t=ZS-99ASI7tUr8m"
-                target="_blank"
-            >
-                Ver nuestro TikTok
-            </a>
-
-        </div>
-
-    </section>
-
-
-</div>
-
-
-<script>
-
-
-/* =====================================
-   DATOS DEL INVENTARIO
-===================================== */
-
-
-let productos =
-    JSON.parse(
-        localStorage.getItem("productos")
-    ) || [];
-
-
-/* =====================================
-   NAVEGACIÓN
-===================================== */
-
-
-function mostrarSeccion(nombre) {
-
-
-    let secciones =
-        document.querySelectorAll(".seccion");
-
-
-    secciones.forEach(
-        seccion => seccion.classList.remove("activa")
-    );
-
-
-    document
-        .getElementById(nombre)
-        .classList.add("activa");
-
-
-    let botones =
-        document.querySelectorAll("nav button");
-
-
-    botones.forEach(
-        boton => boton.classList.remove("activo")
-    );
-
-
-    let botonActivo =
-        document.getElementById(
-            "nav-" + nombre
-        );
-
-
-    if (botonActivo) {
-
-        botonActivo.classList.add("activo");
-
-    }
-
-
-    if (nombre === "inventario") {
-
-        mostrarInventario();
-
-    }
-
-
-    if (nombre === "alertas") {
-
-        mostrarAlertas();
-
-    }
-
-
-    actualizarResumen();
-
-}
-
-
-/* =====================================
-   GUARDAR DATOS
-===================================== */
-
-
-function guardarProductos() {
-
-    localStorage.setItem(
-        "productos",
-        JSON.stringify(productos)
-    );
-
-}
-
-
-/* =====================================
-   AGREGAR PRODUCTO
-===================================== */
-
-
-function agregarProducto() {
-
-
-    let nombre =
-        document
-            .getElementById("nombreProducto")
-            .value
-            .trim();
-
-
-    let cantidad =
-        Number(
             document
-                .getElementById("cantidadProducto")
-                .value
-        );
+                .getElementById("cantidadOperacion")
+                .value = 1;
 
 
-    let minimo =
-        Number(
+            if (tipo === "vender") {
+
+                document
+                    .getElementById("tituloModal")
+                    .innerText =
+                    "Registrar venta";
+
+                document
+                    .getElementById("textoModal")
+                    .innerText =
+                    "¿Cuántas unidades se vendieron?";
+
+            }
+
+            else {
+
+                document
+                    .getElementById("tituloModal")
+                    .innerText =
+                    "Registrar ingreso";
+
+                document
+                    .getElementById("textoModal")
+                    .innerText =
+                    "¿Cuántas unidades llegaron?";
+
+            }
+
+
             document
-                .getElementById("minimoProducto")
-                .value
-        );
-
-
-    if (
-
-        nombre === "" ||
-
-        document
-            .getElementById("cantidadProducto")
-            .value === "" ||
-
-        document
-            .getElementById("minimoProducto")
-            .value === "" ||
-
-        cantidad < 0 ||
-
-        minimo < 0
-
-    ) {
-
-        alert(
-            "Completa todos los campos correctamente."
-        );
-
-        return;
-
-    }
-
-
-    let existente =
-        productos.find(
-            producto =>
-                producto.nombre.toLowerCase() ===
-                nombre.toLowerCase()
-        );
-
-
-    if (existente) {
-
-        existente.cantidad += cantidad;
-
-        existente.minimo = minimo;
-
-    }
-
-    else {
-
-        productos.push({
-
-            nombre: nombre,
-
-            cantidad: cantidad,
-
-            minimo: minimo
-
-        });
-
-    }
-
-
-    guardarProductos();
-
-    actualizarResumen();
-
-    mostrarInventario();
-
-    mostrarAlertas();
-
-
-    document
-        .getElementById("nombreProducto")
-        .value = "";
-
-
-    document
-        .getElementById("cantidadProducto")
-        .value = "";
-
-
-    document
-        .getElementById("minimoProducto")
-        .value = "";
-
-
-    let mensaje =
-        document.getElementById("mensaje");
-
-
-    mensaje.style.display = "block";
-
-    mensaje.innerText =
-        "Producto guardado correctamente.";
-
-}
-
-
-/* =====================================
-   VENDER
-===================================== */
-
-
-function venderProducto(indice) {
-
-
-    if (
-        productos[indice].cantidad > 0
-    ) {
-
-        productos[indice].cantidad--;
-
-        guardarProductos();
-
-        mostrarInventario();
-
-        mostrarAlertas();
-
-        actualizarResumen();
-
-    }
-
-}
-
-
-/* =====================================
-   RECIBIR
-===================================== */
-
-
-function recibirProducto(indice) {
-
-
-    productos[indice].cantidad++;
-
-    guardarProductos();
-
-    mostrarInventario();
-
-    mostrarAlertas();
-
-    actualizarResumen();
-
-}
-
-
-/* =====================================
-   ELIMINAR
-===================================== */
-
-
-function eliminarProducto(indice) {
-
-
-    let confirmar =
-        confirm(
-            "¿Quieres eliminar este producto?"
-        );
-
-
-    if (!confirmar) {
-
-        return;
-
-    }
-
-
-    productos.splice(
-        indice,
-        1
-    );
-
-
-    guardarProductos();
-
-    mostrarInventario();
-
-    mostrarAlertas();
-
-    actualizarResumen();
-
-}
-
-
-/* =====================================
-   ESTADO
-===================================== */
-
-
-function obtenerEstado(producto) {
-
-
-    if (
-        producto.cantidad === 0
-    ) {
-
-        return {
-            texto: "Agotado",
-            clase: "agotado"
-        };
-
-    }
-
-
-    if (
-        producto.cantidad <= producto.minimo
-    ) {
-
-        return {
-            texto: "Poco stock",
-            clase: "poco"
-        };
-
-    }
-
-
-    return {
-        texto: "Disponible",
-        clase: "disponible"
-    };
-
-}
-
-
-/* =====================================
-   INVENTARIO
-===================================== */
-
-
-function mostrarInventario() {
-
-
-    let tabla =
-        document.getElementById(
-            "tablaInventario"
-        );
-
-
-    let busqueda =
-        document
-            .getElementById("buscador")
-            .value
-            .toLowerCase();
-
-
-    let filtrados =
-        productos.filter(
-            producto =>
-                producto.nombre
-                    .toLowerCase()
-                    .includes(busqueda)
-        );
-
-
-    tabla.innerHTML = "";
-
-
-    if (
-        filtrados.length === 0
-    ) {
-
-        tabla.innerHTML = `
-
-            <tr>
-
-                <td colspan="5">
-
-                    No se encontraron productos.
-
-                </td>
-
-            </tr>
-
-        `;
-
-        return;
-
-    }
-
-
-    filtrados.forEach(
-        producto => {
-
-
-            let indice =
-                productos.indexOf(producto);
-
-
-            let estado =
-                obtenerEstado(producto);
-
-
-            tabla.innerHTML += `
-
-                <tr>
-
-                    <td>
-
-                        <strong>
-                            ${producto.nombre}
-                        </strong>
-
-                    </td>
-
-
-                    <td>
-                        ${producto.cantidad}
-                    </td>
-
-
-                    <td>
-                        ${producto.minimo}
-                    </td>
-
-
-                    <td class="${estado.clase}">
-
-                        ${estado.texto}
-
-                    </td>
-
-
-                    <td class="acciones">
-
-
-                        <button
-
-                            class="vender"
-
-                            onclick="venderProducto(${indice})"
-
-                        >
-
-                            - 1 vendido
-
-                        </button>
-
-
-                        <button
-
-                            class="recibir"
-
-                            onclick="recibirProducto(${indice})"
-
-                        >
-
-                            + 1 recibido
-
-                        </button>
-
-
-                        <button
-
-                            class="borrar"
-
-                            onclick="eliminarProducto(${indice})"
-
-                        >
-
-                            Eliminar
-
-                        </button>
-
-
-                    </td>
-
-                </tr>
-
-            `;
+                .getElementById("modalCantidad")
+                .classList.add("activo");
 
         }
-    );
-
-}
 
 
-/* =====================================
-   ALERTAS
-===================================== */
+        function confirmarOperacion() {
+
+            let cantidad =
+                Number(
+                    document
+                        .getElementById("cantidadOperacion")
+                        .value
+                );
 
 
-function mostrarAlertas() {
+            if (
+                cantidad <= 0 ||
+                Number.isNaN(cantidad)
+            ) {
+
+                alert(
+                    "Ingresa una cantidad válida."
+                );
+
+                return;
+
+            }
 
 
-    let contenedor =
-        document.getElementById(
-            "listaAlertas"
-        );
+            if (
+                operacionActual === "vender"
+            ) {
+
+                if (
+                    cantidad >
+                    productos[indiceActual].cantidad
+                ) {
+
+                    alert(
+                        "No puedes vender más unidades de las que tienes."
+                    );
+
+                    return;
+
+                }
 
 
-    contenedor.innerHTML = "";
+                productos[indiceActual].cantidad -=
+                    cantidad;
+
+            }
+
+            else {
+
+                productos[indiceActual].cantidad +=
+                    cantidad;
+
+            }
 
 
-    let agotados =
-        productos.filter(
-            producto =>
-                producto.cantidad === 0
-        );
+            guardarProductos();
 
+            cerrarModal();
 
-    let pocos =
-        productos.filter(
-            producto =>
-                producto.cantidad > 0 &&
-                producto.cantidad <= producto.minimo
-        );
-
-
-    if (
-        agotados.length === 0 &&
-        pocos.length === 0
-    ) {
-
-        contenedor.innerHTML = `
-
-            <div class="sin-alertas">
-
-                No hay productos que necesiten atención.
-
-            </div>
-
-        `;
-
-        return;
-
-    }
-
-
-    agotados.forEach(
-        producto => {
-
-            contenedor.innerHTML += `
-
-                <div class="alerta alerta-roja">
-
-                    Producto agotado:
-                    <strong>
-                        ${producto.nombre}
-                    </strong>
-
-                    <br>
-
-                    Es necesario reponer este producto.
-
-                </div>
-
-            `;
+            actualizarTodo();
 
         }
-    );
 
 
-    pocos.forEach(
-        producto => {
+        function cerrarModal() {
 
-            contenedor.innerHTML += `
-
-                <div class="alerta alerta-amarilla">
-
-                    Poco stock:
-                    <strong>
-                        ${producto.nombre}
-                    </strong>
-
-                    <br>
-
-                    Quedan
-                    ${producto.cantidad}
-                    unidades.
-
-                </div>
-
-            `;
+            document
+                .getElementById("modalCantidad")
+                .classList.remove("activo");
 
         }
-    );
-
-}
 
 
-/* =====================================
-   RESUMEN
-===================================== */
+        /* ============================
+           ELIMINAR
+        ============================ */
+
+        function eliminarProducto(indice) {
+
+            let confirmar =
+                confirm(
+                    "¿Quieres eliminar este producto?"
+                );
 
 
-function actualizarResumen() {
+            if (!confirmar) {
+
+                return;
+
+            }
 
 
-    let pocos =
-        productos.filter(
-            producto =>
-                producto.cantidad > 0 &&
-                producto.cantidad <= producto.minimo
-        ).length;
+            productos.splice(
+                indice,
+                1
+            );
 
 
-    let agotados =
-        productos.filter(
-            producto =>
-                producto.cantidad === 0
-        ).length;
+            guardarProductos();
+
+            actualizarTodo();
+
+        }
 
 
-    document
-        .getElementById("totalProductos")
-        .innerText =
-        productos.length;
+        /* ============================
+           ALERTAS
+        ============================ */
+
+        function mostrarAlertas() {
+
+            let contenedor =
+                document.getElementById(
+                    "listaAlertas"
+                );
 
 
-    document
-        .getElementById("totalPocos")
-        .innerText =
-        pocos;
+            contenedor.innerHTML = "";
 
 
-    document
-        .getElementById("totalAgotados")
-        .innerText =
-        agotados;
-
-}
-
-
-/* =====================================
-   INICIAR
-===================================== */
+            let agotados =
+                productos.filter(
+                    producto =>
+                        producto.cantidad === 0
+                );
 
 
-actualizarResumen();
+            let pocos =
+                productos.filter(
+                    producto =>
+                        producto.cantidad > 0 &&
+                        producto.cantidad <= producto.minimo
+                );
 
-mostrarInventario();
 
-mostrarAlertas();
+            if (
+                agotados.length === 0 &&
+                pocos.length === 0
+            ) {
 
-</script>
+                contenedor.innerHTML = `
 
+                    <div class="sin-alertas">
+
+                        🎉 ¡Todo está bien!
+
+                        <br><br>
+
+                        No hay productos que necesiten atención.
+
+                    </div>
+
+                `;
+
+                return;
+
+            }
+
+
+            agotados.forEach(
+                producto => {
+
+                    contenedor.innerHTML += `
+
+                        <div class="alerta alerta-roja">
+
+                            ❌ Producto agotado:
+
+                            <strong>
+                                ${producto.nombre}
+                            </strong>
+
+                            <br>
+
+                            Es necesario reponer este producto.
+
+                        </div>
+
+                    `;
+
+                }
+            );
+
+
+            pocos.forEach(
+                producto => {
+
+                    contenedor.innerHTML += `
+
+                        <div class="alerta alerta-amarilla">
+
+                            ⚠️ Poco stock:
+
+                            <strong>
+                                ${producto.nombre}
+                            </strong>
+
+                            <br>
+
+                            Solo quedan
+                            ${producto.cantidad}
+                            unidades.
+
+                        </div>
+
+                    `;
+
+                }
+            );
+
+        }
+
+
+        /* ============================
+           RESUMEN
+        ============================ */
+
+        function actualizarResumen() {
+
+            let pocos =
+                productos.filter(
+                    producto =>
+                        producto.cantidad > 0 &&
+                        producto.cantidad <= producto.minimo
+                );
+
+
+            let agotados =
+                productos.filter(
+                    producto =>
+                        producto.cantidad === 0
+                );
+
+
+            let disponibles =
+                productos.filter(
+                    producto =>
+                        producto.cantidad >
+                        producto.minimo
+                );
+
+
+            let valorTotal =
+                productos.reduce(
+                    (
+                        total,
+                        producto
+                    ) =>
+
+                        total +
+                        (
+                            producto.cantidad *
+                            producto.precio
+                        ),
+
+                    0
+                );
+
+
+            document
+                .getElementById("totalProductos")
+                .innerText =
+                productos.length;
+
+
+            document
+                .getElementById("totalPocos")
+                .innerText =
+                pocos.length;
+
+
+            document
+                .getElementById("totalAgotados")
+                .innerText =
+                agotados.length;
+
+
+            document
+                .getElementById("valorInventario")
+                .innerText =
+                "S/ " +
+                valorTotal.toFixed(2);
+
+
+            actualizarGrafico(
+                disponibles.length,
+                pocos.length,
+                agotados.length
+            );
+
+        }
+
+
+        /* ============================
+           GRAFICO
+        ============================ */
+
+        function actualizarGrafico(
+            disponibles,
+            pocos,
+            agotados
+        ) {
+
+            let total =
+                productos.length;
+
+
+            let porcentajeDisponible =
+                total === 0
+                    ? 0
+                    : (disponibles / total) * 100;
+
+
+            let porcentajePoco =
+                total === 0
+                    ? 0
+                    : (pocos / total) * 100;
+
+
+            let porcentajeAgotado =
+                total === 0
+                    ? 0
+                    : (agotados / total) * 100;
+
+
+            document
+                .getElementById("graficoDisponible")
+                .innerText =
+                disponibles;
+
+
+            document
+                .getElementById("graficoPoco")
+                .innerText =
+                pocos;
+
+
+            document
+                .getElementById("graficoAgotado")
+                .innerText =
+                agotados;
+
+
+            document
+                .getElementById("barraDisponible")
+                .style.width =
+                porcentajeDisponible + "%";
+
+
+            document
+                .getElementById("barraPoco")
+                .style.width =
+                porcentajePoco + "%";
+
+
+            document
+                .getElementById("barraAgotado")
+                .style.width =
+                porcentajeAgotado + "%";
+
+        }
+
+
+        /* ============================
+           EXPORTAR CSV
+        ============================ */
+
+        function exportarCSV() {
+
+            if (
+                productos.length === 0
+            ) {
+
+                alert(
+                    "No hay productos para exportar."
+                );
+
+                return;
+
+            }
+
+
+            let csv =
+                "Producto,Categoria,Stock,Stock Minimo,Precio,Valor Total\n";
+
+
+            productos.forEach(
+                producto => {
+
+                    let valor =
+                        producto.cantidad *
+                        producto.precio;
+
+
+                    csv +=
+                        `"${producto.nombre}",` +
+
+                        `"${producto.categoria}",` +
+
+                        `${producto.cantidad},` +
+
+                        `${producto.minimo},` +
+
+                        `${producto.precio},` +
+
+                        `${valor}\n`;
+
+                }
+            );
+
+
+            let blob =
+                new Blob(
+                    [csv],
+                    {
+                        type:
+                            "text/csv;charset=utf-8;"
+                    }
+                );
+
+
+            let enlace =
+                document.createElement("a");
+
+
+            enlace.href =
+                URL.createObjectURL(blob);
+
+
+            enlace.download =
+                "inventario.csv";
+
+
+            enlace.click();
+
+        }
+
+
+        /* ============================
+           MODO OSCURO
+        ============================ */
+
+        function cambiarModo() {
+
+            document.body.classList.toggle(
+                "oscuro"
+            );
+
+
+            let oscuro =
+                document.body.classList.contains(
+                    "oscuro"
+                );
+
+
+            localStorage.setItem(
+                "modoOscuro",
+                oscuro
+            );
+
+        }
+
+
+        function cargarModo() {
+
+            let oscuro =
+                localStorage.getItem(
+                    "modoOscuro"
+                );
+
+
+            if (oscuro === "true") {
+
+                document.body.classList.add(
+                    "oscuro"
+                );
+
+            }
+
+        }
+
+
+        /* ============================
+           ACTUALIZAR TODO
+        ============================ */
+
+        function actualizarTodo() {
+
+            mostrarInventario();
+
+            mostrarAlertas();
+
+            actualizarResumen();
+
+        }
+
+
+        /* ============================
+           INICIO
+        ============================ */
+
+        cargarModo();
+
+        iniciar();
+
+    </script>
 
 </body>
-
 </html>
